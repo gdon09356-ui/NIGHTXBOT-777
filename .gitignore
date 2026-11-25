@@ -59,3 +59,11 @@ server.log
 /skills/
 # unused large audio beds - no code references them (118MB dead weight)
 public/uploads/audio/*.wav
+
+# sandbox template cruft (not part of website)
+/.zscripts
+/examples
+/mini-services
+/tests
+/tool-results
+/Caddyfile
