@@ -1,0 +1,962 @@
+     1→/* ============================================================================
+     2→ * UBAIB VISUALS — Trilingual dictionary: English / العربية / اردو
+     3→ * English: LTR · Arabic: RTL · Urdu: RTL
+     4→ * ========================================================================== */
+     5→
+     6→export type Locale = "en" | "ar" | "ur";
+     7→
+     8→export type Dict = typeof en;
+     9→
+    10→export const en = {
+    11→  dir: "ltr" as const,
+    12→  nav: {
+    13→    home: "Home",
+    14→    about: "About",
+    15→    services: "Services",
+    16→    portfolio: "Portfolio",
+    17→    showreel: "Showreel",
+    18→    testimonials: "Testimonials",
+    19→    contact: "Contact",
+    20→    hireMe: "HIRE ME",
+    21→  },
+    22→  hero: {
+    23→    label: "HELLO, I'M UBAIB",
+    24→    line1: "CRAFTING VISUALS.",
+    25→    line2: "CREATING IMPACT.",
+    26→    description:
+    27→      "I transform ideas into powerful visual experiences through professional video editing, cinematic storytelling, motion graphics and creative advertising.",
+    28→    ctaWork: "EXPLORE MY WORK",
+    29→    ctaHire: "HIRE ME",
+    30→    available: "Available for new projects",
+    31→    scrollHint: "Scroll to explore",
+    32→    chips: ["Premiere Pro", "After Effects", "DaVinci Resolve", "CapCut"],
+    33→    avatarNote: "Interactive 3D avatar slot — drop avatar.glb to activate",
+    34→    portraitCaption: "Ubaib — Video Editor & Motion Graphics Designer",
+    35→  },
+    36→  marquee: [
+    37→    "META ADS",
+    38→    "YOUTUBE AUTOMATION",
+    39→    "RESTAURANT COMMERCIALS",
+    40→    "MOTION GRAPHICS",
+    41→    "UGC CREATIVES",
+    42→    "COLOR GRADING",
+    43→    "SOCIAL REELS",
+    44→    "STORYTELLING",
+    45→  ],
+    46→  about: {
+    47→    kicker: "ABOUT ME",
+    48→    heading: "BEHIND THE VISUALS",
+    49→    paragraphs: [
+    50→      "I'm Ubaib, a professional video editor and creative content specialist. I work on engaging video content, advertising creatives, YouTube automation, restaurant commercials and cinematic visual storytelling.",
+    51→      "I believe every video should communicate a message, capture attention and create an impact.",
+    52→    ],
+    53→    philosophyTitle: "Creative philosophy",
+    54→    philosophy:
+    55→      "Great editing is invisible. Every cut, every frame and every sound has to serve the story — so the audience feels the message before they even notice the craft behind it.",
+    56→    expertiseTitle: "Editing expertise",
+    57→    expertise: [
+    58→      "Advertising creatives built for conversion",
+    59→      "Long-form storytelling and documentary editing",
+    60→      "Cinematic food and restaurant commercials",
+    61→      "Motion graphics and animated typography",
+    62→      "Multi-language voice-over synchronization",
+    63→    ],
+    64→    approachTitle: "How I work",
+    65→    approach:
+    66→      "Clear communication, honest timelines and a structured review process. You always know where your project stands — from the first draft to the final color-graded master.",
+    67→    portraitCaption: "Ubaib — at the editing suite",
+    68→    statsTitle: "By the numbers",
+    69→    stats: {
+    70→      projects: { label: "Projects delivered" },
+    71→      clients: { label: "Happy clients" },
+    72→      years: { label: "Years of experience" },
+    73→      languages: { label: "Working languages" },
+    74→    },
+    75→  },
+    76→  services: {
+    77→    kicker: "SERVICES",
+    78→    heading: "WHAT I CREATE",
+    79→    subtitle:
+    80→      "Six focused services, one goal: video content that captures attention and drives results.",
+    81→    viewProjects: "View projects",
+    82→    items: [
+    83→      {
+    84→        title: "META ADS & UGC CREATIVES",
+    85→        description:
+    86→          "Facebook Ads, Instagram Ads, UGC advertisements, product commercials, promotional creatives and conversion-focused video editing.",
+    87→        tags: ["Facebook Ads", "Instagram Ads", "UGC", "Conversion"],
+    88→      },
+    89→      {
+    90→        title: "YOUTUBE AUTOMATION",
+    91→        description:
+    92→          "Faceless YouTube videos, documentary editing, storytelling, long-form editing, stock footage, voice-over synchronization and educational videos.",
+    93→        tags: ["Faceless", "Documentary", "Long-form", "Voice-over"],
+    94→      },
+    95→      {
+    96→        title: "RESTAURANT & FOOD COMMERCIALS",
+    97→        description:
+    98→          "Restaurant advertisements, cinematic food shots, burger and pizza commercials, beverage advertisements, food reels and promotional videos.",
+    99→        tags: ["Food films", "Burgers", "Beverages", "Reels"],
+   100→      },
+   101→      {
+   102→        title: "MOTION GRAPHICS & ANIMATION",
+   103→        description:
+   104→          "Logo animations, typography animation, animated advertisements, transitions, visual effects and motion design.",
+   105→        tags: ["Logo animation", "Typography", "VFX", "Transitions"],
+   106→      },
+   107→      {
+   108→        title: "SOCIAL MEDIA VIDEO CONTENT",
+   109→        description:
+   110→          "Instagram Reels, TikTok videos, YouTube Shorts, brand reels and promotional content.",
+   111→        tags: ["Reels", "TikTok", "Shorts", "Brand content"],
+   112→      },
+   113→      {
+   114→        title: "VIDEO EDITING TRAINING",
+   115→        description:
+   116→          "Video editing education, editing workflows, creative techniques, social media advertisements and professional editing guidance.",
+   117→        tags: ["Workflows", "Techniques", "Mentorship", "Workshops"],
+   118→      },
+   119→    ],
+   120→  },
+   121→  portfolio: {
+   122→    kicker: "PORTFOLIO",
+   123→    heading: "CINEMATIC VIDEO WORK",
+   124→    subtitle:
+   125→      "A selection of commercial, restaurant and social content — filter by category and play a preview.",
+   126→    demoBadge: "DEMO",
+   127→    play: "Play preview",
+   128→    openPlayer: "Open player",
+   129→    close: "Close",
+   130→    duration: "Duration",
+   131→    featured: "FEATURED SHOWREEL",
+   132→    allLabel: "ALL PROJECTS",
+   133→    empty: "No projects in this category yet — new work is added regularly.",
+   134→    categories: {
+   135→      "meta-ads": "META ADS",
+   136→      "ugc-ads": "UGC ADS",
+   137→      "youtube-automation": "YOUTUBE AUTOMATION",
+   138→      restaurant: "RESTAURANT VIDEOS",
+   139→      "motion-graphics": "MOTION GRAPHICS",
+   140→      "social-reels": "SOCIAL MEDIA REELS",
+   141→      "product-commercials": "PRODUCT COMMERCIALS",
+   142→    },
+   143→    demoNotice:
+   144→      "Cards marked DEMO are clearly-labeled placeholders so you can see the layout. Real client work appears first as soon as it is published — upload new videos anytime from the Admin panel (link in the footer).",
+   145→  },
+   146→  restaurant: {
+   147→    kicker: "SIGNATURE SPECIALTY",
+   148→    heading: "RESTAURANT & FOOD COMMERCIALS",
+   149→    subtitle:
+   150→      "Cinematic food advertising: slow-motion pours, melting cheese, moody interiors — cut to make people hungry.",
+   151→    beforeLabel: "BEFORE — flat log footage",
+   152→    afterLabel: "AFTER — graded & polished",
+   153→    dragHint: "Drag the handle to compare",
+   154→    reelTitle: "Restaurant reel — food close-ups & slow motion",
+   155→    items: ["Burger commercials", "Pizza commercials", "Interior films", "Coffee & beverages", "Food close-ups", "Slow-motion shots", "Promotional reels"],
+   156→  },
+   157→  languages: {
+   158→    kicker: "MULTILINGUAL CREATIVE",
+   159→    heading: "THREE LANGUAGES. ONE CREATIVE VISION.",
+   160→    subtitle:
+   161→      "Voice-over, UGC advertisements, commercial narration and storytelling — delivered in English, Arabic and Urdu with accurate subtitles.",
+   162→    sampleBadge: "SAMPLE",
+   163→    audioTitle: "Narration sample",
+   164→    audioNote: "Demo narration generated for layout preview — replace with your own recordings.",
+   165→    videoTitle: "Localized video sample",
+   166→    uploadHint: "Your recording will appear here — add files to public/media/audio.",
+   167→    tabs: {
+   168→      en: {
+   169→        label: "ENGLISH",
+   170→        title: "English collection",
+   171→        description:
+   172→          "International commercial narration, UGC advertisement samples and product promotional videos for global brands.",
+   173→      },
+   174→      ar: {
+   175→        label: "العربية",
+   176→        title: "Arabic collection",
+   177→        description:
+   178→          "Commercial narration, UGC advertisement samples and promotional storytelling in Arabic — with matching on-screen subtitles.",
+   179→      },
+   180→      ur: {
+   181→        label: "اردو",
+   182→        title: "Urdu collection",
+   183→        description:
+   184→          "Voice-over narration, commercial storytelling and promotional videos in Urdu — crafted for Pakistani and diaspora audiences.",
+   185→      },
+   186→    },
+   187→  },
+   188→  testimonials: {
+   189→    kicker: "TESTIMONIALS",
+   190→    heading: "TRUST BUILT THROUGH CREATIVITY",
+   191→    subtitle:
+   192→      "The cards below are empty SAMPLE placeholders — never presented as real reviews. Replace them with genuine client feedback as it comes in.",
+   193→    sampleBadge: "SAMPLE",
+   194→    audioFeedback: "Audio feedback",
+   195→    items: [
+   196→      {
+   197→        name: "Sample Client 01",
+   198→        company: "Client company name",
+   199→        country: "Country",
+   200→        initials: "S1",
+   201→        category: "META ADS",
+   202→        quote:
+   203→          "Placeholder text — replace with your client's genuine written review once they approve it. Keep it short, specific and results-focused.",
+   204→      },
+   205→      {
+   206→        name: "Sample Client 02",
+   207→        company: "Client company name",
+   208→        country: "Country",
+   209→        initials: "S2",
+   210→        category: "RESTAURANT COMMERCIAL",
+   211→        quote:
+   212→          "Placeholder text — swap in the real review, then add the client's logo and permission note. Authentic feedback converts better than polished praise.",
+   213→      },
+   214→      {
+   215→        name: "Sample Client 03",
+   216→        company: "Client company name",
+   217→        country: "Country",
+   218→        initials: "S3",
+   219→        category: "YOUTUBE AUTOMATION",
+   220→        quote:
+   221→          "Placeholder text — this card supports an optional audio testimonial. Drop an mp3 in public/media/audio and link it in testimonials.ts.",
+   222→      },
+   223→    ],
+   224→  },
+   225→  workflow: {
+   226→    kicker: "CREATIVE WORKFLOW",
+   227→    heading: "FROM IDEA TO IMPACT",
+   228→    subtitle: "A cinematic four-stage process built on communication and craft.",
+   229→    steps: {
+   230→      discover: {
+   231→        title: "DISCOVER",
+   232→        description: "Understand the brand and project goals.",
+   233→      },
+   234→      strategize: {
+   235→        title: "STRATEGIZE",
+   236→        description: "Develop the creative direction.",
+   237→      },
+   238→      create: {
+   239→        title: "CREATE",
+   240→        description: "Edit, animate and polish the content.",
+   241→      },
+   242→      deliver: {
+   243→        title: "DELIVER",
+   244→        description: "Deliver professional final videos.",
+   245→      },
+   246→    },
+   247→  },
+   248→  skills: {
+   249→    kicker: "SOFTWARE & EXPERTISE",
+   250→    heading: "TOOLS OF THE CRAFT",
+   251→    subtitle: "The toolkit behind every frame — proficiency levels are editable estimates.",
+   252→    items: {
+   253→      premiere: "Adobe Premiere Pro",
+   254→      aftereffects: "Adobe After Effects",
+   255→      capcut: "CapCut",
+   256→      davinci: "DaVinci Resolve",
+   257→      photoshop: "Photoshop",
+   258→      motion: "Motion Graphics",
+   259→      color: "Color Grading",
+   260→      sound: "Sound Design",
+   261→      storytelling: "Video Storytelling",
+   262→      aitools: "AI Creative Tools",
+   263→    },
+   264→  },
+   265→  contact: {
+   266→    kicker: "CONTACT",
+   267→    heading: "LET'S CREATE SOMETHING EXTRAORDINARY.",
+   268→    subheading:
+   269→      "Have an idea, a brand or a project? Let's turn it into powerful visual content.",
+   270→    form: {
+   271→      name: "Full name",
+   272→      email: "Email",
+   273→      company: "Company",
+   274→      service: "Required service",
+   275→      message: "Project description",
+   276→      budget: "Budget",
+   277→      language: "Preferred language",
+   278→      submit: "SEND PROJECT BRIEF",
+   279→      submitting: "Sending…",
+   280→      success: "Brief received — I'll reply within one business day.",
+   281→      error: "Something went wrong. Please try again or reach me on WhatsApp.",
+   282→      required: "Required field",
+   283→      invalidEmail: "Please enter a valid email",
+   284→    },
+   285→    services: [
+   286→      "Meta Ads & UGC Creatives",
+   287→      "YouTube Automation",
+   288→      "Restaurant & Food Commercials",
+   289→      "Motion Graphics & Animation",
+   290→      "Social Media Video Content",
+   291→      "Video Editing Training",
+   292→    ],
+   293→    budgets: ["Under $300", "$300 – $800", "$800 – $2,000", "$2,000+", "Let's discuss"],
+   294→    languageOptions: { en: "English", ar: "العربية", ur: "اردو" },
+   295→    directTitle: "Direct channels",
+   296→    followTitle: "Follow the work",
+   297→    whatsapp: "WhatsApp",
+   298→    email: "Email",
+   299→    note: "Contact details live in src/content/site.ts — replace the placeholders and they update everywhere.",
+   300→  },
+   301→  ugc: {
+   302→    kicker: "UGC & CREATOR ADS",
+   303→    heading: "UGC CREATIVES THAT CONVERT",
+   304→    subtitle:
+   305→      "Creator-style vertical ads engineered for feeds — a hook in the first second, bold captions and pacing that stops the scroll.",
+   306→    voiceNote:
+   307→      "Voice-over available in English, Arabic and Urdu — the same creative, adapted for three audiences.",
+   308→    scrollHint: "Swipe to explore",
+   309→    playLabel: "Play ad",
+   310→  },
+   311→  archive: {
+   312→    kicker: "THE ARCHIVE",
+   313→    heading: "FRAMES FROM THE CUTTING ROOM",
+   314→    subtitle:
+   315→      "Stills pulled from recent edits — hover to flip between frames, tap the switch button on mobile, click to open full size.",
+   316→    switchLabel: "Switch frame",
+   317→    expandLabel: "Open",
+   318→    close: "Close",
+   319→    watchLabel: "Watch video",
+   320→    stillNote: "Frames are auto-extracted from the project videos in the portfolio.",
+   321→    empty: "The archive fills up automatically as projects are added.",
+   322→  },
+   323→  footer: {
+   324→    tagline: "CRAFTING VISUALS. CREATING IMPACT.",
+   325→    rights: "All rights reserved.",
+   326→    quickLinks: "Quick links",
+   327→    servicesTitle: "Services",
+   328→    contactTitle: "Contact",
+   329→    demoNote: "Demo thumbnails & samples are placeholders — real work is being added.",
+   330→  },
+   331→  common: {
+   332→    demo: "DEMO",
+   333→    loading: "Loading…",
+   334→    backToTop: "Back to top",
+   335→    language: "Language",
+   336→  },
+   337→};
+   338→
+   339→export const ar: Dict = {
+   340→  dir: "rtl" as const,
+   341→  nav: {
+   342→    home: "الرئيسية",
+   343→    about: "من أنا",
+   344→    services: "الخدمات",
+   345→    portfolio: "معرض الأعمال",
+   346→    showreel: "العرض السينمائي",
+   347→    testimonials: "آراء العملاء",
+   348→    contact: "تواصل معي",
+   349→    hireMe: "وظّفني",
+   350→  },
+   351→  hero: {
+   352→    label: "مرحباً، أنا أُبَيْب",
+   353→    line1: "أصنع المرئيات.",
+   354→    line2: "وأصنع الأثر.",
+   355→    description:
+   356→      "أحوّل الأفكار إلى تجارب مرئية مؤثرة عبر المونتاج الاحترافي، السرد السينمائي، الموشن جرافيك والإعلانات الإبداعية.",
+   357→    ctaWork: "استكشف أعمالي",
+   358→    ctaHire: "وظّفني",
+   359→    available: "متاح لمشاريع جديدة",
+   360→    scrollHint: "مرّر للاستكشاف",
+   361→    chips: ["بريمير برو", "أفتر إفكتس", "دا فينشي ريزولف", "كاب كات"],
+   362→    avatarNote: "مكان أفاتار ثلاثي الأبعاد — أضف ملف avatar.glb لتنشيطه",
+   363→    portraitCaption: "أُبَيْب — محرر فيديو ومصمم موشن جرافيك",
+   364→  },
+   365→  marquee: [
+   366→    "إعلانات ميتا",
+   367→    "أتمتة يوتيوب",
+   368→    "إعلانات المطاعم",
+   369→    "موشن جرافيك",
+   370→    "محتوى UGC",
+   371→    "تدريج الألوان",
+   372→    "ريلز اجتماعي",
+   373→    "سرد قصصي",
+   374→  ],
+   375→  about: {
+   376→    kicker: "من أنا",
+   377→    heading: "خلف المرئيات",
+   378→    paragraphs: [
+   379→      "أنا أُبَيْب، محرر فيديو محترف ومتخصص في المحتوى الإبداعي. أعمل على محتوى فيديو جذاب، وإعلانات إبداعية، وأتمتة يوتيوب، وإعلانات المطاعم، والسرد المرئي السينمائي.",
+   380→      "أؤمن أن كل فيديو يجب أن يوصل رسالة، ويلفت الانتباه، ويصنع أثراً حقيقياً.",
+   381→    ],
+   382→    philosophyTitle: "فلسفتي الإبداعية",
+   383→    philosophy:
+   384→      "المونتاج الرائع لا يُلاحَظ. كل قطع وكل إطار وكل صوت يجب أن يخدم القصة، حتى يشعر المشاهد بالرسالة قبل أن يلاحظ الحرفة خلفها.",
+   385→    expertiseTitle: "خبرات المونتاج",
+   386→    expertise: [
+   387→      "إعلانات إبداعية مصممة لتحقيق التحويل",
+   388→      "مونتاج قصصي طويل وأفلام وثائقية",
+   389→      "إعلانات سينمائية للمطاعم والمأكولات",
+   390→      "موشن جرافيك وتايبوغرافي متحرك",
+   391→      "مزامنة التعليق الصوتي بعدة لغات",
+   392→    ],
+   393→    approachTitle: "أسلوب عملي",
+   394→    approach:
+   395→      "تواصل واضح، ومواعيد صادقة، ومراجعات منظمة. ستعرف دائماً حالة مشروعك — من المسودة الأولى حتى النسخة النهائية بعد تدريج الألوان.",
+   396→    portraitCaption: "أُبَيْب — في غرفة المونتاج",
+   397→    statsTitle: "بالأرقام",
+   398→    stats: {
+   399→      projects: { label: "مشروع منجز" },
+   400→      clients: { label: "عميل سعيد" },
+   401→      years: { label: "سنوات خبرة" },
+   402→      languages: { label: "لغات عمل" },
+   403→    },
+   404→  },
+   405→  services: {
+   406→    kicker: "الخدمات",
+   407→    heading: "ما الذي أصنعه",
+   408→    subtitle: "ست خدمات متخصصة وهدف واحد: محتوى مرئي يلفت الانتباه ويحقق النتائج.",
+   409→    viewProjects: "شاهد المشاريع",
+   410→    items: [
+   411→      {
+   412→        title: "إعلانات ميتا ومحتوى UGC",
+   413→        description:
+   414→          "إعلانات فيسبوك وإنستغرام، وإعلانات UGC، وإعلانات المنتجات، والمحتوى الترويجي، ومونتاج فيديو موجّه لرفع معدل التحويل.",
+   415→        tags: ["فيسبوك", "إنستغرام", "UGC", "تحويل"],
+   416→      },
+   417→      {
+   418→        title: "أتمتة يوتيوب",
+   419→        description:
+   420→          "فيديوهات يوتيوب بدون وجه، ومونتاج وثائقي، وسرد قصصي، ومونتاج طويل، ولقطات أرشيفية، ومزامنة التعليق الصوتي، وفيديوهات تعليمية.",
+   421→        tags: ["بدون وجه", "وثائقي", "طويل", "تعليق صوتي"],
+   422→      },
+   423→      {
+   424→        title: "إعلانات المطاعم والمأكولات",
+   425→        description:
+   426→          "إعلانات المطاعم، ولقطات الطعام السينمائية، وإعلانات البرجر والبيتزا، وإعلانات المشروبات، وريلز الطعام والفيديوهات الترويجية.",
+   427→        tags: ["أفلام طعام", "برجر", "مشروبات", "ريلز"],
+   428→      },
+   429→      {
+   430→        title: "الموشن جرافيك والرسوم المتحركة",
+   431→        description:
+   432→          "تحريك الشعارات، وتحريك النصوص، والإعلانات المتحركة، والمؤثرات الانتقالية والبصرية، وتصميم الحركة.",
+   433→        tags: ["شعارات", "تايبوغرافي", "مؤثرات", "انتقالات"],
+   434→      },
+   435→      {
+   436→        title: "محتوى الفيديو لوسائل التواصل",
+   437→        description:
+   438→          "ريلز إنستغرام، وفيديوهات تيك توك، وشارتس يوتيوب، وريلز العلامات التجارية والمحتوى الترويجي.",
+   439→        tags: ["ريلز", "تيك توك", "شارتس", "محتوى العلامات"],
+   440→      },
+   441→      {
+   442→        title: "تدريب على مونتاج الفيديو",
+   443→        description:
+   444→          "تعليم مونتاج الفيديو، وأساليب العمل الاحترافية، والتقنيات الإبداعية، وإعلانات التواصل الاجتماعي، وإرشاد المونتاج الاحترافي.",
+   445→        tags: ["أساليب العمل", "تقنيات", "إرشاد", "ورش"],
+   446→      },
+   447→    ],
+   448→  },
+   449→  portfolio: {
+   450→    kicker: "معرض الأعمال",
+   451→    heading: "أعمال فيديو سينمائية",
+   452→    subtitle: "مجموعة من المحتوى الإعلاني والمطاعم والاجتماعي — صفّ حسب الفئة وشاهد المعاينة.",
+   453→    demoBadge: "نموذج",
+   454→    play: "تشغيل المعاينة",
+   455→    openPlayer: "افتح المشغّل",
+   456→    close: "إغلاق",
+   457→    duration: "المدة",
+   458→    featured: "العرض السينمائي المميز",
+   459→    allLabel: "كل المشاريع",
+   460→    empty: "لا توجد مشاريع في هذه الفئة بعد — تُضاف أعمال جديدة باستمرار.",
+   461→    categories: {
+   462→      "meta-ads": "إعلانات ميتا",
+   463→      "ugc-ads": "إعلانات UGC",
+   464→      "youtube-automation": "أتمتة يوتيوب",
+   465→      restaurant: "فيديوهات المطاعم",
+   466→      "motion-graphics": "موشن جرافيك",
+   467→      "social-reels": "ريلز التواصل الاجتماعي",
+   468→      "product-commercials": "إعلانات المنتجات",
+   469→    },
+   470→    demoNotice:
+   471→      "البطاقات الموسومة بـ «نموذج» عناصر توضيحية معلَّنة فقط — تظهر أعمال العملاء الحقيقية في المقدمة فور نشرها من لوحة الإدارة (الرابط أسفل الصفحة).",
+   472→  },
+   473→  restaurant: {
+   474→    kicker: "التخصص المميز",
+   475→    heading: "إعلانات المطاعم والمأكولات",
+   476→    subtitle: "إعلان طعام سينمائي: صب بطيء، وجبن ذائب، وأجواء دافئة — مونتاج يفتح الشهية.",
+   477→    beforeLabel: "قبل — لقطات LOG خام",
+   478→    afterLabel: "بعد — تدريج ولمعان",
+   479→    dragHint: "اسحب المؤشر للمقارنة",
+   480→    reelTitle: "ريل المطاعم — لقطات قريبة وحركة بطيئة",
+   481→    items: ["إعلانات برجر", "إعلانات بيتزا", "أفلام المطاعم الداخلية", "قهوة ومشروبات", "لقطات قريبة للطعام", "حركة بطيئة", "ريلز ترويجي"],
+   482→  },
+   483→  languages: {
+   484→    kicker: "إبداع متعدد اللغات",
+   485→    heading: "ثلاث لغات. رؤية إبداعية واحدة.",
+   486→    subtitle: "تعليق صوتي، وإعلانات UGC، ورواية إعلانية وسرد — بالإنجليزية والعربية والأردو مع ترجمة دقيقة.",
+   487→    sampleBadge: "نموذج",
+   488→    audioTitle: "نموذج تعليق صوتي",
+   489→    audioNote: "نموذج صوتي مولّد للمعاينة — استبدله بتسجيلاتك الخاصة.",
+   490→    videoTitle: "نموذج فيديو مترجم",
+   491→    uploadHint: "سيظهر تسجيلك هنا — أضف الملفات إلى public/media/audio.",
+   492→    tabs: {
+   493→      en: {
+   494→        label: "ENGLISH",
+   495→        title: "المجموعة الإنجليزية",
+   496→        description: "رواية إعلانية دولية، ونماذج إعلانات UGC، وفيديوهات ترويجية للمنتجات للعلامات العالمية.",
+   497→      },
+   498→      ar: {
+   499→        label: "العربية",
+   500→        title: "المجموعة العربية",
+   501→        description: "رواية إعلانية، ونماذج إعلانات UGC، وسرد ترويجي باللغة العربية — مع ترجمة مطابقة على الشاشة.",
+   502→      },
+   503→      ur: {
+   504→        label: "اردو",
+   505→        title: "المجموعة الأردية",
+   506→        description: "تعليق صوتي وسرد إعلاني وفيديوهات ترويجية بالأردية — لجمهور باكستان والمغتربين.",
+   507→      },
+   508→    },
+   509→  },
+   510→  testimonials: {
+   511→    kicker: "آراء العملاء",
+   512→    heading: "ثقة بُنيت بالإبداع",
+   513→    subtitle: "البطاقات أدناه نماذج فارغة معلَّمة بوضوح — لن تُقدَّم أبداً كآراء حقيقية. استبدلها بآراء عملائك الحقيقية عند ورودها.",
+   514→    sampleBadge: "نموذج",
+   515→    audioFeedback: "رأي صوتي",
+   516→    items: [
+   517→      {
+   518→        name: "عميل نموذجي 01",
+   519→        company: "اسم شركة العميل",
+   520→        country: "الدولة",
+   521→        initials: "S1",
+   522→        category: "إعلانات ميتا",
+   523→        quote:
+   524→          "نص مؤقت — استبدله بالمراجعة الحقيقية من عميلك بعد موافقته. اجعلها قصيرة ومحددة ومرتبطة بالنتائج.",
+   525→      },
+   526→      {
+   527→        name: "عميل نموذجي 02",
+   528→        company: "اسم شركة العميل",
+   529→        country: "الدولة",
+   530→        initials: "S2",
+   531→        category: "إعلان مطعم",
+   532→        quote:
+   533→          "نص مؤقت — أضف المراجعة الحقيقية ثم أضف شعار العميل وإذن النشر. الرأي الصادق أقوى تأثيراً من المدح المصقولة.",
+   534→      },
+   535→      {
+   536→        name: "عميل نموذجي 03",
+   537→        company: "اسم شركة العميل",
+   538→        country: "الدولة",
+   539→        initials: "S3",
+   540→        category: "أتمتة يوتيوب",
+   541→        quote:
+   542→          "نص مؤقت — تدعم هذه البطاقة رأياً صوتياً اختيارياً. أضف ملف mp3 في public/media/audio واربطه في testimonials.ts.",
+   543→      },
+   544→    ],
+   545→  },
+   546→  workflow: {
+   547→    kicker: "سير العمل الإبداعي",
+   548→    heading: "من الفكرة إلى الأثر",
+   549→    subtitle: "عملية سينمائية من أربع مراحل مبنية على التواصل والحرفية.",
+   550→    steps: {
+   551→      discover: { title: "الاكتشاف", description: "فهم العلامة التجارية وأهداف المشروع." },
+   552→      strategize: { title: "التخطيط", description: "تطوير الاتجاه الإبداعي." },
+   553→      create: { title: "الإنشاء", description: "المونتاج والتحريك والتلميع." },
+   554→      deliver: { title: "التسليم", description: "تسليم فيديوهات نهائية احترافية." },
+   555→    },
+   556→  },
+   557→  skills: {
+   558→    kicker: "البرامج والخبرات",
+   559→    heading: "أدوات الصنعة",
+   560→    subtitle: "العُدة خلف كل إطار — نسب الإتقان تقديرات قابلة للتعديل.",
+   561→    items: {
+   562→      premiere: "أدوبي بريمير برو",
+   563→      aftereffects: "أدوبي أفتر إفكتس",
+   564→      capcut: "كاب كات",
+   565→      davinci: "دا فينشي ريزولف",
+   566→      photoshop: "فوتوشوب",
+   567→      motion: "موشن جرافيك",
+   568→      color: "تدريج الألوان",
+   569→      sound: "تصميم الصوت",
+   570→      storytelling: "سرد الفيديو",
+   571→      aitools: "أدوات الذكاء الاصطناعي",
+   572→    },
+   573→  },
+   574→  contact: {
+   575→    kicker: "تواصل معي",
+   576→    heading: "لنصنع شيئاً استثنائياً.",
+   577→    subheading: "لديك فكرة أو علامة تجارية أو مشروع؟ لنحوّلها إلى محتوى مرئي قوي.",
+   578→    form: {
+   579→      name: "الاسم الكامل",
+   580→      email: "البريد الإلكتروني",
+   581→      company: "الشركة",
+   582→      service: "الخدمة المطلوبة",
+   583→      message: "وصف المشروع",
+   584→      budget: "الميزانية",
+   585→      language: "اللغة المفضلة",
+   586→      submit: "أرسل ملخص المشروع",
+   587→      submitting: "جارٍ الإرسال…",
+   588→      success: "استلمت ملخص المشروع — سأرد خلال يوم عمل واحد.",
+   589→      error: "حدث خطأ ما. حاول مرة أخرى أو تواصل معي عبر واتساب.",
+   590→      required: "حقل مطلوب",
+   591→      invalidEmail: "يرجى إدخال بريد إلكتروني صحيح",
+   592→    },
+   593→    services: [
+   594→      "إعلانات ميتا ومحتوى UGC",
+   595→      "أتمتة يوتيوب",
+   596→      "إعلانات المطاعم والمأكولات",
+   597→      "الموشن جرافيك والرسوم المتحركة",
+   598→      "محتوى الفيديو لوسائل التواصل",
+   599→      "تدريب على مونتاج الفيديو",
+   600→    ],
+   601→    budgets: ["أقل من 300$", "300 – 800$", "800 – 2,000$", "أكثر من 2,000$", "لنناقش"],
+   602→    languageOptions: { en: "English", ar: "العربية", ur: "اردو" },
+   603→    directTitle: "قنوات مباشرة",
+   604→    followTitle: "تابع الأعمال",
+   605→    whatsapp: "واتساب",
+   606→    email: "البريد",
+   607→    note: "بيانات التواصل في ملف src/content/site.ts — استبدل النماذج وتتحدث في كل مكان.",
+   608→  },
+   609→  ugc: {
+   610→    kicker: "إعلانات UGC والمبدعين",
+   611→    heading: "محتوى UGC يحقق التحويلات",
+   612→    subtitle:
+   613→      "إعلانات عمودية بأسلوب المبدعين مصممة للخلاصات — خطاف في الثانية الأولى وترجمة جريئة وإيقاع يوقف التمرير.",
+   614→    voiceNote:
+   615→      "تعليق صوتي متوفر بالإنجليزية والعربية والأردية — نفس المحتوى بثلاث نسخ لثلاث جماهير.",
+   616→    scrollHint: "اسحب للاستكشاف",
+   617→    playLabel: "تشغيل الإعلان",
+   618→  },
+   619→  archive: {
+   620→    kicker: "الأرشيف",
+   621→    heading: "لقطات من غرفة المونتاج",
+   622→    subtitle:
+   623→      "لقطات مختارة من مونتاجات حديثة — مرر الفأرة للتبديل بين اللقطات، وعلى الجوال استخدم زر التبديل، وانقر للفتح بالحجم الكامل.",
+   624→    switchLabel: "تبديل اللقطة",
+   625→    expandLabel: "فتح",
+   626→    close: "إغلاق",
+   627→    watchLabel: "مشاهدة الفيديو",
+   628→    stillNote: "اللقطات مستخرجة تلقائيًا من فيديوهات المشاريع في معرض الأعمال.",
+   629→    empty: "يمتلئ الأرشيف تلقائيًا مع إضافة المشاريع.",
+   630→  },
+   631→  footer: {
+   632→    tagline: "أصنع المرئيات. وأصنع الأثر.",
+   633→    rights: "جميع الحقوق محفوظة.",
+   634→    quickLinks: "روابط سريعة",
+   635→    servicesTitle: "الخدمات",
+   636→    contactTitle: "تواصل",
+   637→    demoNote: "الصور والنماذج التوضيحية مؤقتة — تُضاف الأعمال الحقيقية قريباً.",
+   638→  },
+   639→  common: {
+   640→    demo: "نموذج",
+   641→    loading: "جارٍ التحميل…",
+   642→    backToTop: "العودة للأعلى",
+   643→    language: "اللغة",
+   644→  },
+   645→};
+   646→
+   647→export const ur: Dict = {
+   648→  dir: "rtl" as const,
+   649→  nav: {
+   650→    home: "ہوم",
+   651→    about: "میرے بارے میں",
+   652→    services: "خدمات",
+   653→    portfolio: "پورٹ فولیو",
+   654→    showreel: "شور ریل",
+   655→    testimonials: "تعریفیں",
+   656→    contact: "رابطہ",
+   657→    hireMe: "ہائر کریں",
+   658→  },
+   659→  hero: {
+   660→    label: "ہیلو، میں اُبیک ہوں",
+   661→    line1: "ویژولز تخلیق کرتے ہیں۔",
+   662→    line2: "اثر پیدا کرتے ہیں۔",
+   663→    description:
+   664→      "میں پیشہ ورانہ ویڈیو ایڈیٹنگ، سنیمیٹک اسٹوری ٹیلنگ، موشن گرافکس اور تخلیقی اشتہار سازی کے ذریعے خیالات کو مؤثر بصری تجربوں میں بدلتا ہوں۔",
+   665→    ctaWork: "میرا کام دیکھیں",
+   666→    ctaHire: "ہائر کریں",
+   667→    available: "نئے پروجیکٹس کے لیے دستیاب",
+   668→    scrollHint: "دیکھنے کے لیے اسکرول کریں",
+   669→    chips: ["پریمیئر پرو", "افٹر ایفیکٹس", "دا ونچی ریزولو", "کیپ کٹ"],
+   670→    avatarNote: "انٹرایکٹو تھری ڈی اوتار اسلاٹ — avatar.glb شامل کریں",
+   671→    portraitCaption: "اُبیک — ویڈیو ایڈیٹر اور موشن گرافکس ڈیزائنر",
+   672→  },
+   673→  marquee: [
+   674→    "میٹا ایڈز",
+   675→    "یوٹیوب آٹومیشن",
+   676→    "ریسٹورنٹ کمرشلز",
+   677→    "موشن گرافکس",
+   678→    "یو جی سی کریئیٹوز",
+   679→    "کلر گریڈنگ",
+   680→    "سوشل ریلز",
+   681→    "اسٹوری ٹیلنگ",
+   682→  ],
+   683→  about: {
+   684→    kicker: "میرے بارے میں",
+   685→    heading: "ویژولز کے پیچھے",
+   686→    paragraphs: [
+   687→      "میں اُبیک ہوں، ایک پیشہ ور ویڈیو ایڈیٹر اور تخلیقی کانٹینٹ اسپیشلسٹ۔ میں دلکش ویڈیو کانٹینٹ، اشتہاری کریئیٹوز، یوٹیوب آٹومیشن، ریسٹورنٹ کمرشلز اور سنیمیٹک بصری کہانیوں پر کام کرتا ہوں۔",
+   688→      "میرا یقین ہے کہ ہر ویڈیو کو ایک پیغام دینا چاہیے، توجہ حاصل کرنی چاہیے اور اثر چھوڑنا چاہیے۔",
+   689→    ],
+   690→    philosophyTitle: "تخلیقی فلسفہ",
+   691→    philosophy:
+   692→      "بہترین ایڈیٹنگ نظر نہیں آتی۔ ہر کٹ، ہر فریم اور ہر آواز کو کہانی کی خدمت کرنی چاہیے تاکہ ناظرین کو پیغام اس سے پہلے محسوس ہو جائے کہ پیچھے کی محنت نظر آئی۔",
+   693→    expertiseTitle: "ایڈیٹنگ مہارتیں",
+   694→    expertise: [
+   695→      "کنورژن کے لیے بنائے گئے اشتہاری کریئیٹوز",
+   696→      "لمبی کہانیاں اور ڈاکیومنٹری ایڈیٹنگ",
+   697→      "سنیمیٹک فوڈ اور ریسٹورنٹ کمرشلز",
+   698→      "موشن گرافکس اور اینیمیٹڈ ٹائپوگرافی",
+   699→      "کثیر اللسانی وائس اوور سنکرونائزیشن",
+   700→    ],
+   701→    approachTitle: "میرا کام کرنے کا انداز",
+   702→    approach:
+   703→      "واضح بات چیت، ایماندارانہ ٹائم لائن اور منظم ریویو کا عمل۔ آپ کو ہمیشہ اپنے پروجیکٹ کی حالت معلوم رہتی ہے — پہلے ڈرافٹ سے لے کر آخری کلر گریڈڈ ماسٹر تک۔",
+   704→    portraitCaption: "اُبیک — ایڈیٹنگ سوئٹ میں",
+   705→    statsTitle: "اعداد و شمار",
+   706→    stats: {
+   707→      projects: { label: "مکمل شدہ پروجیکٹس" },
+   708→      clients: { label: "مطمئن کلائنٹس" },
+   709→      years: { label: "تجربے کے سال" },
+   710→      languages: { label: "کام کی زبانیں" },
+   711→    },
+   712→  },
+   713→  services: {
+   714→    kicker: "خدمات",
+   715→    heading: "میں کیا تخلیق کرتا ہوں",
+   716→    subtitle: "چھ مخصوص خدمات، ایک ہدف: ایسا ویڈیو کانٹینٹ جو توجہ کھینچے اور نتائج دے۔",
+   717→    viewProjects: "پروجیکٹس دیکھیں",
+   718→    items: [
+   719→      {
+   720→        title: "میٹا ایڈز اور UGC کریئیٹوز",
+   721→        description:
+   722→          "فیس بک ایڈز، انسٹاگرام ایڈز، یو جی سی اشتہارات، پروڈکٹ کمرشلز، پروموشنل کریئیٹوز اور کنورژن پر مرکوز ویڈیو ایڈیٹنگ۔",
+   723→        tags: ["فیس بک", "انسٹاگرام", "یو جی سی", "کنورژن"],
+   724→      },
+   725→      {
+   726→        title: "یوٹیوب آٹومیشن",
+   727→        description:
+   728→          "فیس لیس یوٹیوب ویڈیوز، ڈاکیومنٹری ایڈیٹنگ، اسٹوری ٹیلنگ، لانگ فارم ایڈیٹنگ، اسٹاک فوٹیج، وائس اوور سنکرونائزیشن اور تعلیمی ویڈیوز۔",
+   729→        tags: ["فیس لیس", "ڈاکیومنٹری", "لانگ فارم", "وائس اوور"],
+   730→      },
+   731→      {
+   732→        title: "ریسٹورنٹ اور فوڈ کمرشلز",
+   733→        description:
+   734→          "ریسٹورنٹ اشتہارات، سنیمیٹک فوڈ شاٹس، برگر اور پیزا کمرشلز، مشروبات کے اشتہارات، فوڈ ریلز اور پروموشنل ویڈیوز۔",
+   735→        tags: ["فوڈ فلمز", "برگر", "مشروبات", "ریلز"],
+   736→      },
+   737→      {
+   738→        title: "موشن گرافکس اور اینیمیشن",
+   739→        description:
+   740→          "لوگو اینیمیشن، ٹائپوگرافی اینیمیشن، اینیمیٹڈ اشتہارات، ٹرانزیشنز، ویژول ایفیکٹس اور موشن ڈیزائن۔",
+   741→        tags: ["لوگو", "ٹائپوگرافی", "ایفیکٹس", "ٹرانزیشن"],
+   742→      },
+   743→      {
+   744→        title: "سوشل میڈیا ویڈیو کانٹینٹ",
+   745→        description:
+   746→          "انسٹاگرام ریلز، ٹک ٹاک ویڈیوز، یوٹیوب شارٹس، برانڈ ریلز اور پروموشنل کانٹینٹ۔",
+   747→        tags: ["ریلز", "ٹک ٹاک", "شارٹس", "برانڈ"],
+   748→      },
+   749→      {
+   750→        title: "ویڈیو ایڈیٹنگ ٹریننگ",
+   751→        description:
+   752→          "ویڈیو ایڈیٹنگ تعلیم، ایڈیٹنگ ورک فلو، تخلیقی تکنیکیں، سوشل میڈیا اشتہارات اور پیشہ ورانہ رہنمائی۔",
+   753→        tags: ["ورک فلو", "تکنیکیں", "رہنمائی", "ورکشاپس"],
+   754→      },
+   755→    ],
+   756→  },
+   757→  portfolio: {
+   758→    kicker: "پورٹ فولیو",
+   759→    heading: "سنیمیٹک ویڈیو ورک",
+   760→    subtitle: "کمرشل، ریسٹورنٹ اور سوشل کانٹینٹ کا انتخاب — کیٹیگری سے چھانٹیں اور پریویو چلائیں۔",
+   761→    demoBadge: "ڈیمو",
+   762→    play: "پریویو چلائیں",
+   763→    openPlayer: "پلیئر کھولیں",
+   764→    close: "بند کریں",
+   765→    duration: "دورانیہ",
+   766→    featured: "نمایاں شور ریل",
+   767→    allLabel: "تمام پروجیکٹس",
+   768→    empty: "اس کیٹیگری میں ابھی کوئی پروجیکٹ نہیں — نیا کام باقاعدگی سے شامل ہوتا ہے۔",
+   769→    categories: {
+   770→      "meta-ads": "میٹا ایڈز",
+   771→      "ugc-ads": "یو جی سی ایڈز",
+   772→      "youtube-automation": "یوٹیوب آٹومیشن",
+   773→      restaurant: "ریسٹورنٹ ویڈیوز",
+   774→      "motion-graphics": "موشن گرافکس",
+   775→      "social-reels": "سوشل میڈیا ریلز",
+   776→      "product-commercials": "پروڈکٹ کمرشلز",
+   777→    },
+   778→    demoNotice:
+   779→      "ڈیمو نشان والے کارڈ صرف واضح لیبل شدہ مثالیں ہیں — حقیقی کلائنٹ کام ایڈمن پینل سے پبلش ہوتے ہی سب سے اوپر نظر آتا ہے (لنک صفحے کے نیچے)۔",
+   780→  },
+   781→  restaurant: {
+   782→    kicker: "نمایاں مہارت",
+   783→    heading: "ریسٹورنٹ اور فوڈ کمرشلز",
+   784→    subtitle: "سنیمیٹک فوڈ اشتہارات: سلو موشن، پگھلا پنیر، دیدہ زیب ماحول — ایسا ایڈیٹ جو بھوک بڑھا دے۔",
+   785→    beforeLabel: "پہلے — خام LOG فوٹیج",
+   786→    afterLabel: "بعد — گریڈڈ اور پالش",
+   787→    dragHint: "موازنے کے لیے ہینڈل کھینچیں",
+   788→    reelTitle: "ریسٹورنٹ ریل — فوڈ کلوز اپس اور سلو موشن",
+   789→    items: ["برگر کمرشلز", "پیزا کمرشلز", "اندرونی فلمز", "کافی اور مشروبات", "فوڈ کلوز اپس", "سلو موشن شاٹس", "پروموشنل ریلز"],
+   790→  },
+   791→  languages: {
+   792→    kicker: "کثیر اللسانی تخلیق",
+   793→    heading: "تین زبانیں۔ ایک تخلیقی وژن۔",
+   794→    subtitle: "وائس اوور، یو جی سی اشتہارات، کمرشل نیریشن اور اسٹوری ٹیلنگ — انگریزی، عربی اور اردو میں درست سب ٹائٹلز کے ساتھ۔",
+   795→    sampleBadge: "نمونہ",
+   796→    audioTitle: "نیریشن نمونہ",
+   797→    audioNote: "پریویو کے لیے بنایا گیا ڈیمو نیریشن — اپنی اپلوڈ کردہ ریکارڈنگ سے بدلیں۔",
+   798→    videoTitle: "مترجم ویڈیو نمونہ",
+   799→    uploadHint: "آپ کی ریکارڈنگ یہاں نظر آئے گی — فائلیں public/media/audio میں شامل کریں۔",
+   800→    tabs: {
+   801→      en: {
+   802→        label: "ENGLISH",
+   803→        title: "انگریزی کلیکشن",
+   804→        description: "بین الاقوامی کمرشل نیریشن، یو جی سی اشتہار نمونے اور عالمی برانڈز کے لیے پروڈکٹ پروموشنل ویڈیوز۔",
+   805→      },
+   806→      ar: {
+   807→        label: "عربی",
+   808→        title: "عربی کلیکشن",
+   809→        description: "کمرشل نیریشن، یو جی سی اشتہار نمونے اور عربی میں پروموشنل اسٹوری ٹیلنگ — اسکرین سب ٹائٹلز کے ساتھ۔",
+   810→      },
+   811→      ur: {
+   812→        label: "اردو",
+   813→        title: "اردو کلیکشن",
+   814→        description: "اردو میں وائس اوور نیریشن، کمرشل اسٹوری ٹیلنگ اور پروموشنل ویڈیوز — پاکستانی اور غیر ملکی ناظرین کے لیے۔",
+   815→      },
+   816→    },
+   817→  },
+   818→  testimonials: {
+   819→    kicker: "تعریفیں",
+   820→    heading: "تخلیق سے پیدا ہوا اعتماد",
+   821→    subtitle: "نیچے کے کارڈ خالی نمونے ہیں جو حقیقی تعریفات نہیں ہیں۔ حقیقی کلائنٹ فیڈ بیک آنے پر انہیں بدل دیں۔",
+   822→    sampleBadge: "نمونہ",
+   823→    audioFeedback: "آڈیو فیڈ بیک",
+   824→    items: [
+   825→      {
+   826→        name: "نمونہ کلائنٹ 01",
+   827→        company: "کلائنٹ کمپنی کا نام",
+   828→        country: "ملک",
+   829→        initials: "S1",
+   830→        category: "میٹا ایڈز",
+   831→        quote:
+   832→          "نمونہ متن — کلائنٹ کی منظوری کے بعد حقیقی تعریف سے بدلیں۔ مختصر، واضح اور نتائج پر مرکوز رکھیں۔",
+   833→      },
+   834→      {
+   835→        name: "نمونہ کلائنٹ 02",
+   836→        company: "کلائنٹ کمپنی کا نام",
+   837→        country: "ملک",
+   838→        initials: "S2",
+   839→        category: "ریسٹورنٹ کمرشل",
+   840→        quote:
+   841→          "نمونہ متن — حقیقی تعریف شامل کریں، پھر کلائنٹ کا لوگو اور اجازت نوٹ لگائیں۔ اصل فیڈ بیک مصنوعی تعریف سے بہتر ہے۔",
+   842→      },
+   843→      {
+   844→        name: "نمونہ کلائنٹ 03",
+   845→        company: "کلائنٹ کمپنی کا نام",
+   846→        country: "ملک",
+   847→        initials: "S3",
+   848→        category: "یوٹیوب آٹومیشن",
+   849→        quote:
+   850→          "نمونہ متن — اس کارڈ میں اختیاری آڈیو تعریف کی سہولت ہے۔ public/media/audio میں mp3 ڈالیں اور testimonials.ts میں لنک کریں۔",
+   851→      },
+   852→    ],
+   853→  },
+   854→  workflow: {
+   855→    kicker: "تخلیقی ورک فلو",
+   856→    heading: "خیال سے اثر تک",
+   857→    subtitle: "بات چیت اور مہارت پر مبنی سنیمیٹک چار مرحلوں کا عمل۔",
+   858→    steps: {
+   859→      discover: { title: "دریافت", description: "برانڈ اور پروجیکٹ کے اہداف سمجھنا۔" },
+   860→      strategize: { title: "حکمت عملی", description: "تخلیقی سمت تیار کرنا۔" },
+   861→      create: { title: "تخلیق", description: "ایڈیٹ، اینیمیٹ اور پالش کرنا۔" },
+   862→      deliver: { title: "حوالگی", description: "پیشہ ورانہ حتمی ویڈیوز فراہم کرنا۔" },
+   863→    },
+   864→  },
+   865→  skills: {
+   866→    kicker: "سافٹ ویئر اور مہارتیں",
+   867→    heading: "پیشے کے اوزار",
+   868→    subtitle: "ہر فریم کے پیچھے کا ٹول کٹ — مہارت کی سطح قابلِ تدوین تخمینہ ہے۔",
+   869→    items: {
+   870→      premiere: "ایڈوبی پریمیئر پرو",
+   871→      aftereffects: "ایڈوبی افٹر ایفیکٹس",
+   872→      capcut: "کیپ کٹ",
+   873→      davinci: "دا ونچی ریزولو",
+   874→      photoshop: "فوٹوشاپ",
+   875→      motion: "موشن گرافکس",
+   876→      color: "کلر گریڈنگ",
+   877→      sound: "ساؤنڈ ڈیزائن",
+   878→      storytelling: "ویڈیو اسٹوری ٹیلنگ",
+   879→      aitools: "اے آئی تخلیقی اوزار",
+   880→    },
+   881→  },
+   882→  contact: {
+   883→    kicker: "رابطہ",
+   884→    heading: "آئیے کچھ غیر معمولی بناتے ہیں۔",
+   885→    subheading: "کوئی خیال، برانڈ یا پروجیکٹ ہے؟ آئیے اسے طاقتور بصری کانٹینٹ میں بدلتے ہیں۔",
+   886→    form: {
+   887→      name: "پورا نام",
+   888→      email: "ای میل",
+   889→      company: "کمپنی",
+   890→      service: "مطلوبہ خدمت",
+   891→      message: "پروجیکٹ کی تفصیل",
+   892→      budget: "بجٹ",
+   893→      language: "مطلوبہ زبان",
+   894→      submit: "پروجیکٹ بریف بھیجیں",
+   895→      submitting: "بھیجا جا رہا ہے…",
+   896→      success: "بریف موصول ہوا — میں ایک کاروباری دن میں جواب دوں گا۔",
+   897→      error: "کچھ غلط ہو گیا۔ دوبارہ کوشش کریں یا واٹس ایپ پر رابطہ کریں۔",
+   898→      required: "لازمی خانہ",
+   899→      invalidEmail: "درست ای میل درج کریں",
+   900→    },
+   901→    services: [
+   902→      "میٹا ایڈز اور UGC کریئیٹوز",
+   903→      "یوٹیوب آٹومیشن",
+   904→      "ریسٹورنٹ اور فوڈ کمرشلز",
+   905→      "موشن گرافکس اور اینیمیشن",
+   906→      "سوشل میڈیا ویڈیو کانٹینٹ",
+   907→      "ویڈیو ایڈیٹنگ ٹریننگ",
+   908→    ],
+   909→    budgets: ["300$ سے کم", "300 – 800$", "800 – 2,000$", "2,000$ سے زیادہ", "بات چیت کریں"],
+   910→    languageOptions: { en: "English", ar: "العربية", ur: "اردو" },
+   911→    directTitle: "براہِ راست رابطے",
+   912→    followTitle: "کام کا پیچھا کریں",
+   913→    whatsapp: "واٹس ایپ",
+   914→    email: "ای میل",
+   915→    note: "رابطے کی تفصیل src/content/site.ts میں ہے — پلیس ہولڈر بدلیں اور وہ ہر جگہ اپ ڈیٹ ہو جائے گا۔",
+   916→  },
+   917→  ugc: {
+   918→    kicker: "یو جی سی اور کریئیٹر ایڈز",
+   919→    heading: "ایسے یو جی سی ایڈز جو نتیجہ دیں",
+   920→    subtitle:
+   921→      "کریئیٹر انداز کی عمودی ایڈز جو فیڈز کے لیے بنی ہیں — پہلے سیکنڈ میں ہک، بولڈ کیپشنز اور سکرول روک دینے والی رفتار۔",
+   922→    voiceNote:
+   923→      "وائس اوور انگریزی، عربی اور اردو میں دستیاب — ایک ہی تخلیق، تین سامعین کے لیے تین نسخے۔",
+   924→    scrollHint: "دیکھنے کے لیے سوائپ کریں",
+   925→    playLabel: "ایڈ چلائیں",
+   926→  },
+   927→  archive: {
+   928→    kicker: "آرکائیو",
+   929→    heading: "ایڈیٹنگ روم کے فریمز",
+   930→    subtitle:
+   931→      "حالیہ ایڈٹس سے نکالے گئے فریم — ہوور سے فریم بدلیں، موبائل پر سوئچ بٹن استعمال کریں، اور بڑا دیکھنے کے لیے کلک کریں۔",
+   932→    switchLabel: "فریم بدلیں",
+   933→    expandLabel: "کھولیں",
+   934→    close: "بند کریں",
+   935→    watchLabel: "ویڈیو دیکھیں",
+   936→    stillNote: "یہ فریم پورٹ فولیو کی ویڈیوز سے خودکار طور پر نکالے گئے ہیں۔",
+   937→    empty: "پروجیکٹس شامل ہوتے ہی آرکائیو خود بھرتا جائے گا۔",
+   938→  },
+   939→  footer: {
+   940→    tagline: "ویژولز تخلیق کرتے ہیں۔ اثر پیدا کرتے ہیں۔",
+   941→    rights: "جملہ حقوق محفوظ ہیں۔",
+   942→    quickLinks: "فوری لنکس",
+   943→    servicesTitle: "خدمات",
+   944→    contactTitle: "رابطہ",
+   945→    demoNote: "ڈیمو تھمبنیل اور نمونے عارضی ہیں — حقیقی کام شامل کیا جا رہا ہے۔",
+   946→  },
+   947→  common: {
+   948→    demo: "ڈیمو",
+   949→    loading: "لوڈ ہو رہا ہے…",
+   950→    backToTop: "اوپر جائیں",
+   951→    language: "زبان",
+   952→  },
+   953→};
+   954→
+   955→export const LOCALES: { id: Locale; label: string; short: string; dir: "ltr" | "rtl" }[] = [
+   956→  { id: "en", label: "English", short: "EN", dir: "ltr" },
+   957→  { id: "ar", label: "العربية", short: "ع", dir: "rtl" },
+   958→  { id: "ur", label: "اردو", short: "اُ", dir: "rtl" },
+   959→];
+   960→
+   961→export const DICTS: Record<Locale, Dict> = { en, ar, ur };
+   962→

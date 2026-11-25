@@ -1,0 +1,697 @@
+     1→"use client";
+     2→
+     3→/* ============================================================================
+     4→ * ADMIN → VIDEOS TAB — upload (auto-optimize + auto thumbnails), edit
+     5→ * metadata, pin to the top of the portfolio, delete. Everything published
+     6→ * here appears instantly on the public site.
+     7→ * ========================================================================== */
+     8→import { useCallback, useEffect, useRef, useState } from "react";
+     9→import {
+    10→  Film,
+    11→  Loader2,
+    12→  Pencil,
+    13→  RefreshCw,
+    14→  Star,
+    15→  Trash2,
+    16→  UploadCloud,
+    17→} from "lucide-react";
+    18→import { Button } from "@/components/ui/button";
+    19→import { Input } from "@/components/ui/input";
+    20→import { Textarea } from "@/components/ui/textarea";
+    21→import { Label } from "@/components/ui/label";
+    22→import { Switch } from "@/components/ui/switch";
+    23→import {
+    24→  Select,
+    25→  SelectContent,
+    26→  SelectItem,
+    27→  SelectTrigger,
+    28→  SelectValue,
+    29→} from "@/components/ui/select";
+    30→import { Badge } from "@/components/ui/badge";
+    31→import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+    32→import { useToast } from "@/hooks/use-toast";
+    33→import { cn } from "@/lib/utils";
+    34→
+    35→type AdminVideo = {
+    36→  id: string;
+    37→  title: string;
+    38→  description: string;
+    39→  category: string;
+    40→  videoPath: string;
+    41→  thumbPath: string;
+    42→  thumbPath2: string;
+    43→  duration: string;
+    44→  seconds: number;
+    45→  vertical: boolean;
+    46→  featured: boolean;
+    47→  sizeMb: number;
+    48→  createdAt: string;
+    49→};
+    50→
+    51→export const CATEGORIES = [
+    52→  { id: "meta-ads", label: "Meta Ads" },
+    53→  { id: "ugc-ads", label: "UGC Ads" },
+    54→  { id: "restaurant", label: "Restaurant Videos" },
+    55→  { id: "motion-graphics", label: "Motion Graphics" },
+    56→  { id: "social-reels", label: "Social Media Reels" },
+    57→];
+    58→
+    59→export const categoryLabel = (id: string) => CATEGORIES.find((c) => c.id === id)?.label ?? id;
+    60→
+    61→const CATEGORY_HINTS: Record<string, string> = {
+    62→  "meta-ads": "Meta Ads",
+    63→  "ugc-ads": "UGC Ads",
+    64→  restaurant: "Restaurant",
+    65→  "motion-graphics": "Motion Graphics",
+    66→  "social-reels": "Social Reels",
+    67→};
+    68→
+    69→/** "client_name-product-ad.mp4" → "Client Name Product Ad" */
+    70→function prettifyFilename(name: string): string {
+    71→  const base = name.replace(/\.[^.]+$/, "").replace(/[_\-\s]+/g, " ").trim();
+    72→  return base
+    73→    .split(" ")
+    74→    .filter(Boolean)
+    75→    .map((w) => (w.length <= 3 && w === w.toUpperCase() ? w : w.charAt(0).toUpperCase() + w.slice(1)))
+    76→    .join(" ")
+    77→    .slice(0, 120);
+    78→}
+    79→
+    80→/** Publish-ready description written for the admin — editable if wanted. */
+    81→function buildDescription(title: string, category: string): string {
+    82→  const label = CATEGORY_HINTS[category] ?? "Video";
+    83→  return `${title} — professional ${label} edit by UBAID EDITS. Scroll-stopping hooks, clean pacing and a polished color grade, delivered ready to publish.`.slice(0, 400);
+    84→}
+    85→
+    86→/* ------------------------------------------------------------------ */
+    87→/* Upload card                                                         */
+    88→/* ------------------------------------------------------------------ */
+    89→function UploadCard({ onUploaded }: { onUploaded: () => void }) {
+    90→  const { toast } = useToast();
+    91→  const fileInputRef = useRef<HTMLInputElement>(null);
+    92→  const thumbInputRef = useRef<HTMLInputElement>(null);
+    93→
+    94→  const [file, setFile] = useState<File | null>(null);
+    95→  const [thumb, setThumb] = useState<File | null>(null);
+    96→  const [title, setTitle] = useState("");
+    97→  const [description, setDescription] = useState("");
+    98→  const [category, setCategory] = useState("meta-ads");
+    99→  const [featured, setFeatured] = useState(false);
+   100→  const [optimize, setOptimize] = useState(true);
+   101→  const [dragOver, setDragOver] = useState(false);
+   102→  const [stage, setStage] = useState<"idle" | "uploading" | "processing">("idle");
+   103→  const [progress, setProgress] = useState(0);
+   104→
+   105→  const pickFile = (f: File | null) => {
+   106→    if (!f) return;
+   107→    const ok = /\.(mp4|webm|mov|mkv|m4v)$/i.test(f.name);
+   108→    if (!ok) {
+   109→      toast({ title: "Unsupported file", description: "Use mp4, webm, mov or mkv.", variant: "destructive" });
+   110→      return;
+   111→    }
+   112→    if (f.size > 5 * 1024 * 1024 * 1024) {
+   113→      toast({ title: "File too large", description: "The limit is 5 GB — export a smaller version or trim the video.", variant: "destructive" });
+   114→      return;
+   115→    }
+   116→    setFile(f);
+   117→    // Automatic title + description — the admin just uploads, the copy
+   118→    // writes itself (both stay fully editable).
+   119→    const autoTitle = prettifyFilename(f.name);
+   120→    setTitle(autoTitle);
+   121→    setDescription(buildDescription(autoTitle || "New project", category));
+   122→  };
+   123→
+   124→  const reset = () => {
+   125→    setFile(null);
+   126→    setThumb(null);
+   127→    setTitle("");
+   128→    setDescription("");
+   129→    setCategory("meta-ads");
+   130→    setFeatured(false);
+   131→    setOptimize(true);
+   132→    setProgress(0);
+   133→    setStage("idle");
+   134→  };
+   135→
+   136→  const submit = async (e: React.FormEvent) => {
+   137→    e.preventDefault();
+   138→    if (!file) {
+   139→      toast({ title: "No video selected", description: "Choose a video file first.", variant: "destructive" });
+   140→      return;
+   141→    }
+   142→    // Title/description are optional — blank ones are generated automatically
+   143→    // server-side from the filename and category.
+   144→
+   145→    const fd = new FormData();
+   146→    fd.append("video", file);
+   147→    if (thumb) fd.append("thumbnail", thumb);
+   148→    fd.append("title", title.trim());
+   149→    fd.append("description", description.trim());
+   150→    fd.append("category", category);
+   151→    fd.append("featured", String(featured));
+   152→    fd.append("optimize", String(optimize));
+   153→
+   154→    setStage("uploading");
+   155→    setProgress(0);
+   156→
+   157→    try {
+   158→      await new Promise<void>((resolve, reject) => {
+   159→        const xhr = new XMLHttpRequest();
+   160→        xhr.open("POST", "/api/admin/videos");
+   161→        xhr.upload.onprogress = (e) => {
+   162→          if (e.lengthComputable) {
+   163→            const pct = Math.round((e.loaded / e.total) * 100);
+   164→            setProgress(pct);
+   165→            if (pct >= 100) setStage("processing");
+   166→          }
+   167→        };
+   168→        xhr.onload = () => {
+   169→          try {
+   170→            const data = JSON.parse(xhr.responseText) as { ok: boolean; error?: string; optimized?: boolean };
+   171→            if (xhr.status >= 200 && xhr.status < 300 && data.ok) {
+   172→              toast({
+   173→                title: "Video published",
+   174→                description: data.optimized
+   175→                  ? "Uploaded, optimized for web and added to the site."
+   176→                  : "Uploaded and added to the site.",
+   177→              });
+   178→              resolve();
+   179→            } else {
+   180→              reject(new Error(data.error ?? "Upload failed."));
+   181→            }
+   182→          } catch {
+   183→            reject(new Error("Unexpected server response."));
+   184→          }
+   185→        };
+   186→        xhr.onerror = () => reject(new Error("Network error during upload."));
+   187→        xhr.send(fd);
+   188→      });
+   189→      reset();
+   190→      onUploaded();
+   191→    } catch (err) {
+   192→      toast({
+   193→        title: "Upload failed",
+   194→        description: err instanceof Error ? err.message : "Try again.",
+   195→        variant: "destructive",
+   196→      });
+   197→      setStage("idle");
+   198→    }
+   199→  };
+   200→
+   201→  const busy = stage !== "idle";
+   202→  const sizeMb = file ? Math.round((file.size / 1048576) * 10) / 10 : 0;
+   203→
+   204→  return (
+   205→    <form
+   206→      onSubmit={submit}
+   207→      className="rounded-3xl border border-line bg-card/60 p-5 sm:p-6"
+   208→      aria-label="Upload video"
+   209→    >
+   210→      <h2 className="font-display flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
+   211→        <UploadCloud className="h-4 w-4 text-glow" />
+   212→        Upload a video
+   213→      </h2>
+   214→
+   215→      {/* Drop zone */}
+   216→      <button
+   217→        type="button"
+   218→        onClick={() => fileInputRef.current?.click()}
+   219→        onDragOver={(e) => {
+   220→          e.preventDefault();
+   221→          setDragOver(true);
+   222→        }}
+   223→        onDragLeave={() => setDragOver(false)}
+   224→        onDrop={(e) => {
+   225→          e.preventDefault();
+   226→          setDragOver(false);
+   227→          pickFile(e.dataTransfer.files?.[0] ?? null);
+   228→        }}
+   229→        className={cn(
+   230→          "mt-4 flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-7 text-center transition",
+   231→          dragOver ? "border-electric bg-electric/10" : "border-line bg-surface/40 hover:border-electric/60"
+   232→        )}
+   233→      >
+   234→        <Film className="h-7 w-7 text-glow" />
+   235→        {file ? (
+   236→          <>
+   237→            <p className="max-w-full truncate text-sm font-semibold text-foreground">{file.name}</p>
+   238→            <p className="text-[11px] text-muted-foreground">{sizeMb} MB — click to replace</p>
+   239→          </>
+   240→        ) : (
+   241→          <>
+   242→            <p className="text-sm font-semibold text-foreground">Tap to choose a video — or drop it here</p>
+   243→            <p className="text-[11px] text-muted-foreground">mp4 / webm / mov / mkv — up to 5 GB</p>
+   244→          </>
+   245→        )}
+   246→      </button>
+   247→      <input
+   248→        ref={fileInputRef}
+   249→        type="file"
+   250→        accept="video/mp4,video/webm,video/quicktime,video/x-matroska"
+   251→        className="hidden"
+   252→        onChange={(e) => pickFile(e.target.files?.[0] ?? null)}
+   253→      />
+   254→
+   255→      <p className="mt-3 rounded-xl border border-line bg-surface/40 px-3.5 py-2.5 text-[11px] leading-relaxed text-muted-foreground">
+   256→        Title &amp; description fill in <span className="font-bold text-foreground">automatically</span> from the file name — just upload, everything else is handled. Files above 200 MB get a fast remux instead of a full re-encode.
+   257→      </p>
+   258→
+   259→      {/* Fields */}
+   260→      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+   261→        <div className="space-y-1.5 sm:col-span-2">
+   262→          <Label htmlFor="v-title">Title</Label>
+   263→          <Input
+   264→            id="v-title"
+   265→            value={title}
+   266→            onChange={(e) => setTitle(e.target.value)}
+   267→            placeholder="Auto from file name — edit if you like"
+   268→            maxLength={120}
+   269→          />
+   270→        </div>
+   271→        <div className="space-y-1.5 sm:col-span-2">
+   272→          <Label htmlFor="v-desc">Description</Label>
+   273→          <Textarea
+   274→            id="v-desc"
+   275→            value={description}
+   276→            onChange={(e) => setDescription(e.target.value)}
+   277→            placeholder="One or two lines about the edit — shown on the card."
+   278→            rows={3}
+   279→            maxLength={400}
+   280→          />
+   281→        </div>
+   282→        <div className="space-y-1.5">
+   283→          <Label>Category</Label>
+   284→          <Select
+   285→            value={category}
+   286→            onValueChange={(v) => {
+   287→              setCategory(v);
+   288→              // Keep the auto description in sync while it is untouched.
+   289→              if (!description.trim() || description === buildDescription(title, category)) {
+   290→                setDescription(buildDescription(title || "New project", v));
+   291→              }
+   292→            }}
+   293→          >
+   294→            <SelectTrigger aria-label="Category">
+   295→              <SelectValue placeholder="Pick a category" />
+   296→            </SelectTrigger>
+   297→            <SelectContent>
+   298→              {CATEGORIES.map((c) => (
+   299→                <SelectItem key={c.id} value={c.id}>
+   300→                  {c.label}
+   301→                </SelectItem>
+   302→              ))}
+   303→            </SelectContent>
+   304→          </Select>
+   305→        </div>
+   306→        <div className="space-y-1.5">
+   307→          <Label>Custom thumbnail (optional)</Label>
+   308→          <Button type="button" variant="outline" onClick={() => thumbInputRef.current?.click()} className="w-full">
+   309→            {thumb ? thumb.name.slice(0, 28) : "Choose image…"}
+   310→          </Button>
+   311→          <input
+   312→            ref={thumbInputRef}
+   313→            type="file"
+   314→            accept="image/*"
+   315→            className="hidden"
+   316→            onChange={(e) => setThumb(e.target.files?.[0] ?? null)}
+   317→          />
+   318→        </div>
+   319→
+   320→        <div className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface/40 px-4 py-3 sm:col-span-1">
+   321→          <div>
+   322→            <p className="text-sm font-semibold text-foreground">Feature (pin to top)</p>
+   323→            <p className="text-[11px] text-muted-foreground">Pins it to the top of the portfolio</p>
+   324→          </div>
+   325→          <Switch checked={featured} onCheckedChange={setFeatured} aria-label="Feature on top" />
+   326→        </div>
+   327→        <div className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface/40 px-4 py-3 sm:col-span-1">
+   328→          <div>
+   329→            <p className="text-sm font-semibold text-foreground">Optimize for web</p>
+   330→            <p className="text-[11px] text-muted-foreground">Re-encode to a fast-loading MP4</p>
+   331→          </div>
+   332→          <Switch checked={optimize} onCheckedChange={setOptimize} aria-label="Optimize for web" />
+   333→        </div>
+   334→      </div>
+   335→
+   336→      {/* Progress */}
+   337→      {busy ? (
+   338→        <div className="mt-4">
+   339→          <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+   340→            <span>{stage === "uploading" ? "Uploading…" : "Processing — encoding for web…"}</span>
+   341→            <span className="tabular-nums">{stage === "uploading" ? `${progress}%` : ""}</span>
+   342→          </div>
+   343→          <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface">
+   344→            <div
+   345→              className="h-full rounded-full bg-electric transition-all duration-300"
+   346→              style={{ width: stage === "uploading" ? `${progress}%` : "100%" }}
+   347→            />
+   348→          </div>
+   349→          {stage === "processing" ? (
+   350→            <p className="mt-2 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+   351→              <Loader2 className="h-3 w-3 animate-spin" />
+   352→              Large files (up to 5 GB) can take a few minutes — keep this tab open.
+   353→            </p>
+   354→          ) : null}
+   355→        </div>
+   356→      ) : null}
+   357→
+   358→      <div className="mt-5 flex gap-3">
+   359→        <Button type="submit" disabled={busy} className="flex-1 gap-2 bg-electric hover:bg-glow">
+   360→          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <UploadCloud className="h-4 w-4" />}
+   361→          {busy ? "Working…" : "Publish video"}
+   362→        </Button>
+   363→        {file && !busy ? (
+   364→          <Button type="button" variant="outline" onClick={reset}>
+   365→            Clear
+   366→          </Button>
+   367→        ) : null}
+   368→      </div>
+   369→    </form>
+   370→  );
+   371→}
+   372→
+   373→/* ------------------------------------------------------------------ */
+   374→/* Library list                                                        */
+   375→/* ------------------------------------------------------------------ */
+   376→function LibraryRow({
+   377→  video,
+   378→  onEdit,
+   379→  onDelete,
+   380→  onToggleFeatured,
+   381→}: {
+   382→  video: AdminVideo;
+   383→  onEdit: () => void;
+   384→  onDelete: () => void;
+   385→  onToggleFeatured: (v: boolean) => void;
+   386→}) {
+   387→  return (
+   388→    <div className="flex flex-col gap-3 rounded-2xl border border-line bg-card/60 p-3 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
+   389→      <div className="relative h-28 w-full shrink-0 overflow-hidden rounded-xl bg-surface sm:aspect-video sm:h-16 sm:w-28">
+   390→        {video.thumbPath ? (
+   391→          <img src={video.thumbPath} alt={video.title} className="h-full w-full object-cover" loading="lazy" />
+   392→        ) : (
+   393→          <div className="flex h-full w-full items-center justify-center">
+   394→            <Film className="h-5 w-5 text-muted-foreground/50" />
+   395→          </div>
+   396→        )}
+   397→        {video.duration ? (
+   398→          <span className="absolute bottom-1 end-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold tabular-nums text-white">
+   399→            {video.duration}
+   400→          </span>
+   401→        ) : null}
+   402→      </div>
+   403→
+   404→      <div className="min-w-0 flex-1">
+   405→        <div className="flex flex-wrap items-center gap-1.5">
+   406→          <p className="truncate text-sm font-bold text-foreground">{video.title}</p>
+   407→          {video.featured ? (
+   408→            <Badge className="border-0 bg-electric/15 text-[10px] font-bold tracking-wider text-[#e11d2e]">
+   409→              <Star className="me-1 h-3 w-3" /> FEATURED
+   410→            </Badge>
+   411→          ) : null}
+   412→        </div>
+   413→        <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
+   414→          <span>{categoryLabel(video.category)}</span>
+   415→          <span aria-hidden="true">·</span>
+   416→          <span>{video.vertical ? "vertical" : "landscape"}</span>
+   417→          <span aria-hidden="true">·</span>
+   418→          <span>{video.sizeMb} MB</span>
+   419→        </p>
+   420→        {video.description ? (
+   421→          <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground/80">
+   422→            {video.description}
+   423→          </p>
+   424→        ) : null}
+   425→      </div>
+   426→
+   427→      <div className="flex shrink-0 items-center gap-2">
+   428→        <button
+   429→          onClick={() => onToggleFeatured(!video.featured)}
+   430→          aria-label={video.featured ? "Remove from featured" : "Feature on top"}
+   431→          aria-pressed={video.featured}
+   432→          className={cn(
+   433→            "rounded-lg border p-2.5 transition",
+   434→            video.featured
+   435→              ? "border-electric bg-electric/15 text-glow"
+   436→              : "border-line text-muted-foreground hover:border-electric hover:text-foreground"
+   437→          )}
+   438→        >
+   439→          <Star className="h-4 w-4" />
+   440→        </button>
+   441→        <button
+   442→          onClick={onEdit}
+   443→          aria-label="Edit video"
+   444→          className="rounded-lg border border-line p-2.5 text-muted-foreground transition hover:border-electric hover:text-foreground"
+   445→        >
+   446→          <Pencil className="h-4 w-4" />
+   447→        </button>
+   448→        <button
+   449→          onClick={onDelete}
+   450→          aria-label="Delete video"
+   451→          className="rounded-lg border border-line p-2.5 text-muted-foreground transition hover:border-destructive hover:text-destructive"
+   452→        >
+   453→          <Trash2 className="h-4 w-4" />
+   454→        </button>
+   455→      </div>
+   456→    </div>
+   457→  );
+   458→}
+   459→
+   460→/* ------------------------------------------------------------------ */
+   461→/* Tab                                                                 */
+   462→/* ------------------------------------------------------------------ */
+   463→export function VideosTab() {
+   464→  const { toast } = useToast();
+   465→  const [videos, setVideos] = useState<AdminVideo[]>([]);
+   466→  const [loadingList, setLoadingList] = useState(false);
+   467→  const [editing, setEditing] = useState<AdminVideo | null>(null);
+   468→  const [editTitle, setEditTitle] = useState("");
+   469→  const [editDescription, setEditDescription] = useState("");
+   470→  const [editCategory, setEditCategory] = useState("meta-ads");
+   471→  const [editBusy, setEditBusy] = useState(false);
+   472→  const [deleting, setDeleting] = useState<AdminVideo | null>(null);
+   473→  const [deleteBusy, setDeleteBusy] = useState(false);
+   474→
+   475→  const loadVideos = useCallback(async () => {
+   476→    setLoadingList(true);
+   477→    try {
+   478→      const res = await fetch("/api/admin/videos");
+   479→      if (res.status === 401) {
+   480→        toast({ title: "Session expired", description: "Please log in again.", variant: "destructive" });
+   481→        return;
+   482→      }
+   483→      const data = (await res.json()) as { videos: AdminVideo[] };
+   484→      setVideos(data.videos ?? []);
+   485→    } catch {
+   486→      toast({ title: "Could not load library", variant: "destructive" });
+   487→    } finally {
+   488→      setLoadingList(false);
+   489→    }
+   490→  }, [toast]);
+   491→
+   492→  useEffect(() => {
+   493→    void loadVideos();
+   494→  }, [loadVideos]);
+   495→
+   496→  const saveEdit = async () => {
+   497→    if (!editing) return;
+   498→    if (!editTitle.trim()) {
+   499→      toast({ title: "Title required", variant: "destructive" });
+   500→      return;
+   501→    }
+   502→    setEditBusy(true);
+   503→    try {
+   504→      const res = await fetch(`/api/admin/videos/${editing.id}`, {
+   505→        method: "PUT",
+   506→        headers: { "Content-Type": "application/json" },
+   507→        body: JSON.stringify({
+   508→          title: editTitle,
+   509→          description: editDescription,
+   510→          category: editCategory,
+   511→        }),
+   512→      });
+   513→      const data = (await res.json()) as { ok: boolean; error?: string };
+   514→      if (data.ok) {
+   515→        toast({ title: "Saved", description: "Video updated on the site." });
+   516→        setEditing(null);
+   517→        void loadVideos();
+   518→      } else {
+   519→        toast({ title: "Update failed", description: data.error, variant: "destructive" });
+   520→      }
+   521→    } catch {
+   522→      toast({ title: "Update failed", variant: "destructive" });
+   523→    } finally {
+   524→      setEditBusy(false);
+   525→    }
+   526→  };
+   527→
+   528→  const toggleFeatured = async (video: AdminVideo) => {
+   529→    try {
+   530→      const res = await fetch(`/api/admin/videos/${video.id}`, {
+   531→        method: "PUT",
+   532→        headers: { "Content-Type": "application/json" },
+   533→        body: JSON.stringify({ featured: !video.featured }),
+   534→      });
+   535→      const data = (await res.json()) as { ok: boolean; error?: string };
+   536→      if (data.ok) {
+   537→        toast({
+   538→          title: video.featured ? "Removed from featured" : "Pinned to the top",
+   539→          description: video.featured ? undefined : "It now appears first in the portfolio.",
+   540→        });
+   541→        void loadVideos();
+   542→      } else {
+   543→        toast({ title: "Update failed", description: data.error, variant: "destructive" });
+   544→      }
+   545→    } catch {
+   546→      toast({ title: "Update failed", variant: "destructive" });
+   547→    }
+   548→  };
+   549→
+   550→  const confirmDelete = async () => {
+   551→    if (!deleting) return;
+   552→    setDeleteBusy(true);
+   553→    try {
+   554→      const res = await fetch(`/api/admin/videos/${deleting.id}`, { method: "DELETE" });
+   555→      const data = (await res.json()) as { ok: boolean; error?: string };
+   556→      if (data.ok) {
+   557→        toast({ title: "Deleted", description: `"${deleting.title}" was removed from the site.` });
+   558→        setDeleting(null);
+   559→        void loadVideos();
+   560→      } else {
+   561→        toast({ title: "Delete failed", description: data.error, variant: "destructive" });
+   562→      }
+   563→    } catch {
+   564→      toast({ title: "Delete failed", variant: "destructive" });
+   565→    } finally {
+   566→      setDeleteBusy(false);
+   567→    }
+   568→  };
+   569→
+   570→  return (
+   571→    <main className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+   572→      <UploadCard onUploaded={() => void loadVideos()} />
+   573→
+   574→      {/* Library */}
+   575→      <section aria-label="Published videos" className="rounded-3xl border border-line bg-card/40 p-5 sm:p-6">
+   576→        <div className="flex items-center justify-between gap-3">
+   577→          <h2 className="font-display flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
+   578→            <Film className="h-4 w-4 text-glow" />
+   579→            Published videos
+   580→            <Badge variant="outline" className="border-line text-[10px] text-muted-foreground">
+   581→              {videos.length}
+   582→            </Badge>
+   583→          </h2>
+   584→          <button
+   585→            onClick={() => void loadVideos()}
+   586→            aria-label="Refresh list"
+   587→            className="rounded-lg border border-line p-2 text-muted-foreground transition hover:border-electric hover:text-foreground"
+   588→          >
+   589→            <RefreshCw className={cn("h-4 w-4", loadingList && "animate-spin")} />
+   590→          </button>
+   591→        </div>
+   592→
+   593→        <div className="mt-4 max-h-[720px] space-y-3 overflow-y-auto pe-1">
+   594→          {loadingList && videos.length === 0 ? (
+   595→            <div className="flex items-center justify-center py-10">
+   596→              <Loader2 className="h-5 w-5 animate-spin text-electric" />
+   597→            </div>
+   598→          ) : videos.length === 0 ? (
+   599→            <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-line p-8 text-center">
+   600→              <Film className="h-6 w-6 text-muted-foreground/50" />
+   601→              <p className="text-sm text-muted-foreground">
+   602→                No videos published yet — upload the first one.
+   603→              </p>
+   604→            </div>
+   605→          ) : (
+   606→            videos.map((v) => (
+   607→              <LibraryRow
+   608→                key={v.id}
+   609→                video={v}
+   610→                onEdit={() => {
+   611→                  setEditing(v);
+   612→                  setEditTitle(v.title);
+   613→                  setEditDescription(v.description);
+   614→                  setEditCategory(v.category);
+   615→                }}
+   616→                onDelete={() => setDeleting(v)}
+   617→                onToggleFeatured={() => void toggleFeatured(v)}
+   618→              />
+   619→            ))
+   620→          )}
+   621→        </div>
+   622→      </section>
+   623→
+   624→      {/* Edit dialog */}
+   625→      <Dialog open={editing !== null} onOpenChange={(v) => !v && setEditing(null)}>
+   626→        <DialogContent className="border-line bg-card p-5 sm:p-6">
+   627→          <DialogHeader>
+   628→            <DialogTitle className="font-display text-foreground">Edit video</DialogTitle>
+   629→          </DialogHeader>
+   630→          <div className="space-y-4">
+   631→            <div className="space-y-1.5">
+   632→              <Label htmlFor="edit-title">Title</Label>
+   633→              <Input id="edit-title" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} maxLength={120} />
+   634→            </div>
+   635→            <div className="space-y-1.5">
+   636→              <Label htmlFor="edit-desc">Description</Label>
+   637→              <Textarea
+   638→                id="edit-desc"
+   639→                value={editDescription}
+   640→                onChange={(e) => setEditDescription(e.target.value)}
+   641→                rows={3}
+   642→                maxLength={400}
+   643→              />
+   644→            </div>
+   645→            <div className="space-y-1.5">
+   646→              <Label>Category</Label>
+   647→              <Select value={editCategory} onValueChange={setEditCategory}>
+   648→                <SelectTrigger aria-label="Category">
+   649→                  <SelectValue />
+   650→                </SelectTrigger>
+   651→                <SelectContent>
+   652→                  {CATEGORIES.map((c) => (
+   653→                    <SelectItem key={c.id} value={c.id}>
+   654→                      {c.label}
+   655→                    </SelectItem>
+   656→                  ))}
+   657→                </SelectContent>
+   658→              </Select>
+   659→            </div>
+   660→            <div className="flex justify-end gap-3 pt-1">
+   661→              <Button variant="outline" onClick={() => setEditing(null)}>
+   662→                Cancel
+   663→              </Button>
+   664→              <Button onClick={saveEdit} disabled={editBusy} className="gap-2 bg-electric hover:bg-glow">
+   665→                {editBusy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+   666→                Save changes
+   667→              </Button>
+   668→            </div>
+   669→          </div>
+   670→        </DialogContent>
+   671→      </Dialog>
+   672→
+   673→      {/* Delete confirm */}
+   674→      <Dialog open={deleting !== null} onOpenChange={(v) => !v && setDeleting(null)}>
+   675→        <DialogContent className="border-line bg-card p-5 sm:p-6">
+   676→          <DialogHeader>
+   677→            <DialogTitle className="font-display text-foreground">Delete video?</DialogTitle>
+   678→          </DialogHeader>
+   679→          <p className="text-sm text-muted-foreground">
+   680→            &ldquo;{deleting?.title}&rdquo; will be removed from the site and its files deleted. This
+   681→            cannot be undone.
+   682→          </p>
+   683→          <div className="flex justify-end gap-3 pt-2">
+   684→            <Button variant="outline" onClick={() => setDeleting(null)}>
+   685→              Cancel
+   686→            </Button>
+   687→            <Button onClick={confirmDelete} disabled={deleteBusy} variant="destructive" className="gap-2">
+   688→              {deleteBusy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+   689→              Delete
+   690→            </Button>
+   691→          </div>
+   692→        </DialogContent>
+   693→      </Dialog>
+   694→    </main>
+   695→  );
+   696→}
+   697→

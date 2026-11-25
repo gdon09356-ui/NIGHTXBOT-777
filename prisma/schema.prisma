@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Inbound project inquiries from the contact form.
+// Visible via `bun x prisma studio`, extendable to email notifications.
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  service   String
+  message   String
+  budget    String?
+  language  String   @default("en")
+  createdAt DateTime @default(now())
+}
+
+// Client testimonials shown on the public site.
+// Seeded with starter reviews — edit / delete / add from the Admin panel.
+model Testimonial {
+  id         String   @id @default(cuid())
+  name       String
+  company    String   @default("")
+  country    String   @default("")
+  service    String   @default("meta-ads") // service tag id (meta-ads, youtube-automation, restaurant, motion-graphics, social-reels, training)
+  quote      String
+  rating     Int      @default(5)
+  avatarPath String   @default("")
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Single-row editable site profile — contact details + social links.
+// Public site reads it via GET /api/profile; owner edits it in /admin → Profile.
+model SiteProfile {
+  id        String   @id @default("main")
+  phone     String   @default("")
+  whatsapp  String   @default("") // international digits only, e.g. 923453834605
+  email     String   @default("")
+  location  String   @default("")
+  instagram String   @default("")
+  youtube   String   @default("")
+  tiktok    String   @default("")
+  facebook  String   @default("")
+  x         String   @default("") // X (Twitter) profile URL
+  linkedin  String   @default("")
+  bio1      String   @default("")
+  bio2      String   @default("")
+  // Hero / intro-widget stats (editable numbers shown to clients)
+  experienceYears String @default("2")
+  projectsDone    String @default("250")
+  happyClients    String @default("120")
+  // Optional custom voice-intro script. Empty = auto script built from the stats.
+  introScript String @default("")
+  updatedAt   DateTime @updatedAt
+}
+
+// Videos uploaded through the Admin panel (/admin).
+// Files live in public/uploads/videos + public/uploads/thumbs.
+// These render on the public site (Portfolio / Showreel / UGC / Restaurant)
+// merged ahead of the static demo projects.
+model Video {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @default("")
+  category    String   @default("meta-ads")
+  videoPath   String
+  thumbPath   String   @default("")
+  thumbPath2  String   @default("") // second still — used by the Archive hover-switch
+  duration    String   @default("") // human readable, e.g. "0:30"
+  seconds     Int      @default(0)
+  vertical    Boolean  @default(false)
+  featured    Boolean  @default(false)
+  sizeMb      Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
