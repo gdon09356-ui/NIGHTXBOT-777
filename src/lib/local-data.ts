@@ -99,6 +99,18 @@ let seedCache: SiteData | null = null;
 let initStarted = false;
 const subscribers = new Set<() => void>();
 
+/* Sorted views must be referentially stable between writes — React's
+ * useSyncExternalStore compares snapshots, so a fresh array on every
+ * getter call would trigger an infinite update loop. Cache + invalidate. */
+let videosView: VideoRecord[] | null = null;
+let testimonialsView: TestimonialRecord[] | null = null;
+let submissionsView: SubmissionRecord[] | null = null;
+const invalidateViews = (): void => {
+  videosView = null;
+  testimonialsView = null;
+  submissionsView = null;
+};
+
 const notify = () => subscribers.forEach((fn) => fn());
 
 /** Stable subscriber for useSyncExternalStore. Returns the unsubscribe fn. */
@@ -184,6 +196,7 @@ function persist(): void {
 
 function commit(next: SiteData): void {
   store = next;
+  invalidateViews();
   persist();
   notify();
 }
@@ -205,22 +218,31 @@ const ts = (x: string | number | null | undefined): string => (x == null ? "" : 
 
 /** Newest first (featured is pinned separately by the UI). */
 export function getVideos(): VideoRecord[] {
-  return [...store.videos].sort(
-    (a, b) => ts(b.createdAt).localeCompare(ts(a.createdAt)),
-  );
+  if (!videosView) {
+    videosView = [...store.videos].sort(
+      (a, b) => ts(b.createdAt).localeCompare(ts(a.createdAt)),
+    );
+  }
+  return videosView;
 }
 
 /** Display order (admin assigns a manual order). */
 export function getTestimonials(): TestimonialRecord[] {
-  return [...store.testimonials].sort(
-    (a, b) => Number(a.order ?? 0) - Number(b.order ?? 0),
-  );
+  if (!testimonialsView) {
+    testimonialsView = [...store.testimonials].sort(
+      (a, b) => Number(a.order ?? 0) - Number(b.order ?? 0),
+    );
+  }
+  return testimonialsView;
 }
 
 export function getSubmissions(): SubmissionRecord[] {
-  return [...store.submissions].sort(
-    (a, b) => ts(b.createdAt).localeCompare(ts(a.createdAt)),
-  );
+  if (!submissionsView) {
+    submissionsView = [...store.submissions].sort(
+      (a, b) => ts(b.createdAt).localeCompare(ts(a.createdAt)),
+    );
+  }
+  return submissionsView;
 }
 
 /* ------------------------------------------------------------------ */
@@ -368,5 +390,6 @@ export function resetLocalData(): void {
     /* ignore */
   }
   store = seedCache ?? EMPTY_DATA;
+  invalidateViews();
   notify();
 }
