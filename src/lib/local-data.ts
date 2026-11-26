@@ -200,21 +200,26 @@ export function saveProfile(profile: Partial<SiteProfile>): void {
   commit({ ...store, profile: { ...store.profile, ...profile } });
 }
 
+/** Seed data may carry epoch numbers — coerce timestamps before comparing. */
+const ts = (x: string | number | null | undefined): string => (x == null ? "" : String(x));
+
 /** Newest first (featured is pinned separately by the UI). */
 export function getVideos(): VideoRecord[] {
   return [...store.videos].sort(
-    (a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""),
+    (a, b) => ts(b.createdAt).localeCompare(ts(a.createdAt)),
   );
 }
 
 /** Display order (admin assigns a manual order). */
 export function getTestimonials(): TestimonialRecord[] {
-  return [...store.testimonials].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  return [...store.testimonials].sort(
+    (a, b) => Number(a.order ?? 0) - Number(b.order ?? 0),
+  );
 }
 
 export function getSubmissions(): SubmissionRecord[] {
   return [...store.submissions].sort(
-    (a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""),
+    (a, b) => ts(b.createdAt).localeCompare(ts(a.createdAt)),
   );
 }
 
