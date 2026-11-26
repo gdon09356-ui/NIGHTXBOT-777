@@ -1,0 +1,13 @@
+# Only website source needed for Vercel build — exclude sandbox working files
+upload/
+download/
+skills/
+scripts/
+tests/
+tool-results/
+examples/
+mini-services/
+.zscripts/
+*.zip
+*.log
+dev.out.log
