@@ -24,12 +24,21 @@ import { TestimonialsTab } from "./testimonials-tab";
 import { ProfileTab } from "./profile-tab";
 import { MessagesTab } from "./messages-tab";
 import { DataTab } from "./data-tab";
-import { adminLogout, isAdminAuthed } from "@/lib/local-data";
+import { adminLogout, isAdminAuthed, isStoreReady, subscribeLocalData } from "@/lib/local-data";
 
 export default function AdminPage() {
   // sessionStorage is browser-only — start locked, flip after mount.
   const [authed, setAuthed] = useState(false);
   const [checked, setChecked] = useState(false);
+  // Tabs mount only after the local data store finished seeding — their
+  // load() effects read once, so they must see the populated store.
+  const [storeReady, setStoreReady] = useState(false);
+
+  useEffect(() => {
+    const update = () => setStoreReady(isStoreReady());
+    update();
+    return subscribeLocalData(update);
+  }, []);
 
   useEffect(() => {
     setAuthed(isAdminAuthed());
@@ -51,6 +60,14 @@ export default function AdminPage() {
 
   if (!authed) {
     return <LoginScreen onSuccess={() => setAuthed(true)} />;
+  }
+
+  if (authed && !storeReady) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <Loader2 className="h-6 w-6 animate-spin text-electric" />
+      </div>
+    );
   }
 
   return (
