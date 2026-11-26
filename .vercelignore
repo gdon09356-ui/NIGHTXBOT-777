@@ -11,3 +11,4 @@ mini-services/
 *.zip
 *.log
 dev.out.log
+public/uploads/audio/*.wav
