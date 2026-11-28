@@ -1,6 +1,5 @@
 "use client";
 
-import { GraduationCap } from "lucide-react";
 import { BrandMeta, BrandYouTube, BrandInstagram } from "@/components/shared/brand-icons";
 import { Reveal } from "@/components/shared/reveal";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -10,15 +9,13 @@ import type { CategoryId } from "@/content/projects";
 /* Service → portfolio category mapping (used by "View projects") */
 const SERVICE_CATEGORY: CategoryId[] = [
   "meta-ads",
-  "ugc-ads",
   "meta-ads",
   "ugc-ads",
-  "meta-ads", // training → meta-ads samples (editing technique demos)
 ];
 
 /* Official brand marks with their REAL brand colors — index-matched to the
- * services items: Meta Ads, YouTube Automation, Account Management, Social
- * Video Content, Training.
+ * services items: Meta Ads & UGC, YouTube Account Management, Social Video
+ * Content.
  * Each logo sits on a white app-icon tile (exactly like the official brand
  * app icons) so dark glyphs (TikTok) and gradients (Instagram) always read
  * correctly in both light & dark themes, ringed with the brand's own color. */
@@ -41,28 +38,15 @@ const BRANDS: {
     shadow: "shadow-[0_8px_22px_-8px_rgba(255,0,0,0.5)]",
   },
   {
-    Icon: BrandYouTube,
-    iconClass: "h-7 w-7",
-    ring: "ring-1 ring-[#FF0000]/35",
-    shadow: "shadow-[0_8px_22px_-8px_rgba(255,0,0,0.5)]",
-  },
-  {
     Icon: BrandInstagram,
     iconClass: "h-7 w-7",
     ring: "ring-1 ring-[#D800B9]/35",
     shadow: "shadow-[0_8px_22px_-8px_rgba(216,0,185,0.5)]",
   },
-  {
-    Icon: GraduationCap,
-    iconClass: "h-7 w-7 text-electric",
-    ring: "ring-1 ring-electric/35",
-    shadow: "shadow-[0_8px_22px_-8px_rgba(225,29,46,0.55)]",
-  },
 ];
 
-/* 5 cards → balanced rows on every screen: 3+2 on desktop (fixes the empty
- * third column / big side gap), 2+2+full on tablets, stacked on mobile. */
-const CARD_SPAN = ["lg:col-span-2", "lg:col-span-2", "lg:col-span-2", "lg:col-span-3", "sm:col-span-2 lg:col-span-3"];
+/* 3 cards → one balanced row on desktop, 2+1 full-width on tablets. */
+const CARD_SPAN = ["lg:col-span-2", "lg:col-span-2", "sm:col-span-2 lg:col-span-2"];
 
 export function Services() {
   const { t } = useLanguage();

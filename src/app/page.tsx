@@ -11,8 +11,6 @@ import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { Marquee } from "@/components/sections/marquee";
 import { LazySection } from "@/components/shared/lazy-section";
-import { CursorGlow } from "@/components/shared/cursor-glow";
-import { IntroSplash } from "@/components/shared/intro-splash";
 import { ScrollProgress } from "@/components/shared/scroll-progress";
 import { IntroWidget } from "@/components/shared/intro-widget";
 import { ContactDock } from "@/components/shared/contact-dock";
@@ -30,9 +28,7 @@ const Footer = dynamic(() => import("@/components/sections/footer").then((m) => 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <IntroSplash />
       <ScrollProgress />
-      <CursorGlow />
       <Navbar />
       <IntroWidget />
       <ContactDock />

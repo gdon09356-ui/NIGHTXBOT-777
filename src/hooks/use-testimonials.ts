@@ -39,7 +39,7 @@ export const SERVICE_TAGS: Record<string, string> = {
   "ugc-ads": "UGC ADS",
   "social-reels": "SOCIAL MEDIA",
   "social-management": "ACCOUNT MANAGEMENT",
-  training: "EDITING TRAINING",
+  training: "VIDEO EDITING",
   restaurant: "RESTAURANT COMMERCIAL",
   "motion-graphics": "MOTION GRAPHICS",
   "youtube-automation": "YOUTUBE CONTENT",

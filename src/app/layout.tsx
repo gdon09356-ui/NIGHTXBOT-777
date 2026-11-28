@@ -4,6 +4,9 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import { LanguageProvider } from "@/i18n/language-context";
 import { ParticleBackground } from "@/components/shared/particle-background";
+import { AmbientBackground } from "@/components/shared/ambient-background";
+import { CursorGlow } from "@/components/shared/cursor-glow";
+import { MouseSparks } from "@/components/shared/mouse-sparks";
 import { BRAND } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -13,15 +16,15 @@ export const metadata: Metadata = {
     template: `%s — ${BRAND.name}`,
   },
   description:
-    "UBAID EDITS — professional video editing, motion graphics, Meta & UGC ad creatives, YouTube automation, social media account management and video editing training. Portfolio served in 10 languages (English, Urdu, Arabic, French, German, Spanish, Turkish). Edit • Create • Inspire.",
+    "UBAID EDITS — professional video editing, motion graphics, Meta & UGC ad creatives, YouTube account management and social media video content. Portfolio served in 10 languages (English, Urdu, Arabic, French, German, Spanish, Turkish). Edit • Create • Inspire.",
   keywords: [
     "video editor",
     "motion graphics designer",
     "UGC ads",
     "Meta ads video",
-    "YouTube automation editor",
+    "YouTube channel manager",
     "social media account management",
-    "video editing training",
+    "social media video content",
     "multilingual video editor",
     "Arabic video editor",
     "Urdu video editor",
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description:
-      "Professional video editor & motion graphics designer. Meta ads, YouTube automation, social media management and video editing training — portfolio in 10 languages.",
+      "Professional video editor & motion graphics designer. Meta ads, YouTube account management and social media video content — portfolio in 10 languages.",
     url: "https://ubaidedits.com",
     siteName: BRAND.name,
     images: [
@@ -91,11 +94,14 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey="ubaid-theme"
         >
-          <LanguageProvider>
-            {/* cinematic particle network — fixed behind every page */}
-            <ParticleBackground className="fixed inset-0 z-0 opacity-70" />
-            {children}
-          </LanguageProvider>
+          {/* cinematic ambience — drifting red orbs + rising embers, site-wide */}
+          <AmbientBackground />
+          {/* plexus particle network — fixed behind every page */}
+          <ParticleBackground className="fixed inset-0 z-0 opacity-70" />
+          {/* mouse-follow animation — cursor bloom + ember spark trail everywhere */}
+          <CursorGlow />
+          <MouseSparks />
+          <LanguageProvider>{children}</LanguageProvider>
           <Toaster />
         </ThemeProvider>
       </body>

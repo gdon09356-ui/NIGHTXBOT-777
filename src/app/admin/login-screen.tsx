@@ -41,11 +41,11 @@ export function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
       <div className="w-full max-w-sm rounded-3xl border border-line bg-card/70 p-7 shadow-[0_40px_120px_-30px_rgba(225,29,46,0.25)] backdrop-blur">
         <div className="flex flex-col items-center text-center">
           <Image
-            src="/brand/ubaid-avatar-sm.jpg"
+            src="/brand/ubaid-logo-md.jpg"
             alt="UBAID EDITS logo"
             width={72}
             height={72}
-            className="h-18 w-18 rounded-2xl border border-line object-cover"
+            className="h-18 w-18 rounded-2xl border border-line bg-[#0b0d12] object-cover"
             priority
           />
           <p className="font-display mt-4 text-sm font-bold tracking-[0.22em] text-foreground">

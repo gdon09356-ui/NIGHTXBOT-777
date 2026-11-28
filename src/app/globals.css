@@ -353,3 +353,68 @@ html[dir="rtl"] .marquee-track {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================================
+ * AMBIENT CINEMATIC BACKGROUND — site-wide drifting orbs + rising embers
+ * Echoes the red-smoke artwork of the UBAID EDITS logo. Pure CSS, GPU-only
+ * (transform/opacity), hidden under prefers-reduced-motion (global block
+ * below freezes the animations; embers also get display:none for clarity).
+ * ========================================================================== */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  will-change: transform;
+}
+.orb-a {
+  width: 44vw;
+  height: 44vw;
+  left: -12vw;
+  top: -14vh;
+  background: radial-gradient(circle, rgba(225, 29, 46, 0.13), transparent 65%);
+  animation: orb-drift-a 26s ease-in-out infinite alternate;
+}
+.orb-b {
+  width: 38vw;
+  height: 38vw;
+  right: -10vw;
+  bottom: -16vh;
+  background: radial-gradient(circle, rgba(255, 90, 104, 0.1), transparent 65%);
+  animation: orb-drift-b 34s ease-in-out infinite alternate;
+}
+@keyframes orb-drift-a {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(9vw, 7vh, 0) scale(1.15); }
+}
+@keyframes orb-drift-b {
+  0%   { transform: translate3d(0, 0, 0) scale(1.1); }
+  100% { transform: translate3d(-8vw, -9vh, 0) scale(0.95); }
+}
+.ember {
+  position: absolute;
+  bottom: -3vh;
+  border-radius: 9999px;
+  background: rgba(255, 77, 92, 0.85);
+  box-shadow: 0 0 8px 2px rgba(255, 45, 63, 0.4);
+  opacity: 0;
+  animation-name: ember-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+@keyframes ember-rise {
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
+  8%   { opacity: 0.7; }
+  60%  { opacity: 0.4; }
+  100% { transform: translate3d(var(--ember-x, 4vw), -105vh, 0) scale(0.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ember { display: none; }
+}

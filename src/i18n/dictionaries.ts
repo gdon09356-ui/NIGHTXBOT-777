@@ -102,7 +102,7 @@ export const en = {
     kicker: "ABOUT ME",
     heading: "BEHIND THE VISUALS",
     paragraphs: [
-      "I'm Ubaid, a professional video editor and creative content specialist. I work on engaging video content, advertising creatives, YouTube automation and cinematic visual storytelling.",
+      "I'm Ubaid, a professional video editor and creative content specialist. I work on engaging video content, advertising creatives and cinematic visual storytelling.",
       "I believe every video should communicate a message, capture attention and create an impact.",
     ],
     philosophyTitle: "Creative philosophy",
@@ -125,7 +125,7 @@ export const en = {
     kicker: "SERVICES",
     heading: "WHAT I CREATE",
     subtitle:
-      "Five focused services, one goal: video content that captures attention and drives results.",
+      "Three focused services, one goal: video content that captures attention and drives results.",
     viewProjects: "View projects",
     items: [
       {
@@ -134,13 +134,7 @@ export const en = {
           "Facebook Ads, Instagram Ads, UGC advertisements, product commercials, promotional creatives and conversion-focused video editing.",
         tags: ["Facebook Ads", "Instagram Ads", "UGC", "Conversion"],
       },
-      {
-        title: "YOUTUBE AUTOMATION",
-        description:
-          "Faceless YouTube videos, documentary editing, storytelling, long-form editing, stock footage, voice-over synchronization and educational videos.",
-        tags: ["Faceless", "Documentary", "Long-form", "Voice-over"],
-      },
-      {
+            {
         title: "YOUTUBE ACCOUNT MANAGEMENT",
         description:
           "Complete management of your YouTube channel — content planning, upload schedule, titles, thumbnails, SEO tags and audience growth.",
@@ -152,13 +146,7 @@ export const en = {
           "Instagram Reels, TikTok videos, YouTube Shorts, brand reels and promotional content.",
         tags: ["Reels", "TikTok", "Shorts", "Brand content"],
       },
-      {
-        title: "YOUTUBE AUTOMATION TRAINING",
-        description:
-          "Learn YouTube automation end-to-end — niche research, script writing, faceless channels, editing systems and monetization, taught on real projects.",
-        tags: ["Automation", "Faceless", "Monetization", "Mentorship"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "PORTFOLIO",
@@ -231,10 +219,8 @@ export const en = {
     },
     services: [
       "Meta Ads & UGC Creatives",
-      "YouTube Automation",
       "YouTube Account Management",
       "Social Media Video Content",
-      "YouTube Automation Training",
     ],
     budgets: ["Under $300", "$300 – $800", "$800 – $2,000", "$2,000+", "Let's discuss"],
     directTitle: "Direct channels",
@@ -330,7 +316,7 @@ export const ar: Dict = {
     kicker: "من أنا",
     heading: "خلف المرئيات",
     paragraphs: [
-      "أنا عبيد، محرر فيديو محترف ومتخصص في المحتوى الإبداعي. أعمل على محتوى فيديو جذاب، وإعلانات إبداعية، وأتمتة يوتيوب، والسرد المرئي السينمائي.",
+      "أنا عبيد، محرر فيديو محترف ومتخصص في المحتوى الإبداعي. أعمل على محتوى فيديو جذاب، وإعلانات إبداعية، والسرد المرئي السينمائي.",
       "أؤمن أن كل فيديو يجب أن يوصل رسالة، ويلفت الانتباه، ويصنع أثراً حقيقياً.",
     ],
     philosophyTitle: "فلسفتي الإبداعية",
@@ -352,7 +338,7 @@ export const ar: Dict = {
   services: {
     kicker: "الخدمات",
     heading: "ما الذي أصنعه",
-    subtitle: "خمس خدمات متخصصة وهدف واحد: محتوى مرئي يلفت الانتباه ويحقق النتائج.",
+    subtitle: "ثلاث خدمات متخصصة وهدف واحد: محتوى مرئي يلفت الانتباه ويحقق النتائج.",
     viewProjects: "شاهد المشاريع",
     items: [
       {
@@ -361,13 +347,7 @@ export const ar: Dict = {
           "إعلانات فيسبوك وإنستغرام، وإعلانات UGC، وإعلانات المنتجات، والمحتوى الترويجي، ومونتاج فيديو موجّه لرفع معدل التحويل.",
         tags: ["فيسبوك", "إنستغرام", "UGC", "تحويل"],
       },
-      {
-        title: "أتمتة يوتيوب",
-        description:
-          "فيديوهات يوتيوب بدون وجه، ومونتاج وثائقي، وسرد قصصي، ومونتاج طويل، ولقطات أرشيفية، ومزامنة التعليق الصوتي، وفيديوهات تعليمية.",
-        tags: ["بدون وجه", "وثائقي", "طويل", "تعليق صوتي"],
-      },
-      {
+            {
         title: "إدارة حساب يوتيوب",
         description:
           "إدارة كاملة لقناتك على يوتيوب — تخطيط المحتوى، وجدولة النشر، والعناوين والصور المصغرة ووسوم SEO ونمو الجمهور.",
@@ -379,13 +359,7 @@ export const ar: Dict = {
           "ريلز إنستغرام، وفيديوهات تيك توك، وشارتس يوتيوب، وريلز العلامات التجارية والمحتوى الترويجي.",
         tags: ["ريلز", "تيك توك", "شارتس", "محتوى العلامات"],
       },
-      {
-        title: "تدريب على أتمتة يوتيوب",
-        description:
-          "تعلّم أتمتة يوتيوب من البداية إلى النهاية — اختيار المجال، وكتابة السكربتات، والقنوات بدون وجه، وأنظمة المونتاج، وتحقيق الربح — بتدريب على مشاريع حقيقية.",
-        tags: ["أتمتة", "بدون وجه", "ربح", "إرشاد"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "معرض الأعمال",
@@ -443,10 +417,8 @@ export const ar: Dict = {
     },
     services: [
       "إعلانات ميتا ومحتوى UGC",
-      "أتمتة يوتيوب",
       "إدارة حساب يوتيوب",
       "محتوى الفيديو لوسائل التواصل",
-      "تدريب على أتمتة يوتيوب",
     ],
     budgets: ["أقل من 300$", "300 – 800$", "800 – 2,000$", "أكثر من 2,000$", "لنناقش"],
     directTitle: "قنوات مباشرة",
@@ -545,7 +517,7 @@ export const ur: Dict = {
     kicker: "میرے بارے میں",
     heading: "بصریات کے پیچھے",
     paragraphs: [
-      "میں عبید ہوں، ایک پیشہ ور ویڈیو ایڈیٹر اور تخلیقی مواد کا ماہر۔ میں دلچسپ ویڈیو کنٹینٹ، اشتہاری تخلیقات، یوٹیوب آٹومیشن اور سنیمیٹک اسٹوری ٹیلنگ پر کام کرتا ہوں۔",
+      "میں عبید ہوں، ایک پیشہ ور ویڈیو ایڈیٹر اور تخلیقی مواد کا ماہر۔ میں دلچسپ ویڈیو کنٹینٹ، اشتہاری تخلیقات اور سنیمیٹک اسٹوری ٹیلنگ پر کام کرتا ہوں۔",
       "میرا یقین ہے کہ ہر ویڈیو کو ایک پیغام دینا چاہیے، توجہ حاصل کرنی چاہیے اور اثر پیدا کرنا چاہیے۔",
     ],
     philosophyTitle: "تخلیقی فلسفہ",
@@ -567,7 +539,7 @@ export const ur: Dict = {
   services: {
     kicker: "خدمات",
     heading: "میں جو بناتا ہوں",
-    subtitle: "پانچ مرکزی خدمات، ایک ہدف: ایسا ویڈیو کنٹینٹ جو توجہ حاصل کرے اور نتائج دے۔",
+    subtitle: "تین مرکزی خدمات، ایک ہدف: ایسا ویڈیو کنٹینٹ جو توجہ حاصل کرے اور نتائج دے۔",
     viewProjects: "پروجیکٹس دیکھیں",
     items: [
       {
@@ -576,13 +548,7 @@ export const ur: Dict = {
           "فیس بک ایڈز، انسٹاگرام ایڈز، UGC اشتہارات، پروڈکٹ کمرشلز، پروموشنل تخلیقات اور کنورژن فوکسڈ ویڈیو ایڈیٹنگ۔",
         tags: ["فیس بک ایڈز", "انسٹاگرام ایڈز", "UGC", "کنورژن"],
       },
-      {
-        title: "یوٹیوب آٹومیشن",
-        description:
-          "فیس لیس یوٹیوب ویڈیوز، ڈاکیومنٹری ایڈیٹنگ، اسٹوری ٹیلنگ، لانگ فارم ایڈیٹنگ، اسٹاک فوٹیج، وائس اوور سنک اور تعلیمی ویڈیوز۔",
-        tags: ["فیس لیس", "ڈاکیومنٹری", "لانگ فارم", "وائس اوور"],
-      },
-      {
+            {
         title: "یوٹیوب اکاؤنٹ مینجمنٹ",
         description:
           "آپ کے یوٹیوب چینل کی مکمل مینجمنٹ — کنٹینٹ پلاننگ، اپ لوڈ شیڈول، ٹائٹلز، تھمب نیلز، SEO ٹیگز اور آڈینس گروتھ۔",
@@ -594,13 +560,7 @@ export const ur: Dict = {
           "انسٹاگرام ریلز، ٹک ٹاک ویڈیوز، یوٹیوب شارٹس، برانڈ ریلز اور پروموشنل کنٹینٹ۔",
         tags: ["ریلز", "ٹک ٹاک", "شارٹس", "برانڈ کنٹینٹ"],
       },
-      {
-        title: "یوٹیوب آٹومیشن ٹریننگ",
-        description:
-          "یوٹیوب آٹومیشن شروع سے آخر تک سیکھیں — نیش ریسرچ، اسکرپٹ رائٹنگ، فیس لیس چینلز، ایڈیٹنگ سسٹمز اور مونیٹائزیشن — حقیقی پروجیکٹس پر ٹریننگ کے ساتھ۔",
-        tags: ["آٹومیشن", "فیس لیس", "مونیٹائزیشن", "مینٹر شپ"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "پورٹ فولیو",
@@ -658,10 +618,8 @@ export const ur: Dict = {
     },
     services: [
       "میٹا ایڈز اور UGC تخلیقات",
-      "یوٹیوب آٹومیشن",
       "یوٹیوب اکاؤنٹ مینجمنٹ",
       "سوشل میڈیا ویڈیو کنٹینٹ",
-      "یوٹیوب آٹومیشن ٹریننگ",
     ],
     budgets: ["$300 سے کم", "$300 – $800", "$800 – $2,000", "$2,000+", "بات چیت کریں"],
     directTitle: "براہِ راست رابطے",
@@ -756,7 +714,7 @@ export const fr: Dict = {
     kicker: "À PROPOS",
     heading: "DERRIÈRE LES IMAGES",
     paragraphs: [
-      "Je suis Ubaid, monteur vidéo professionnel et spécialiste du contenu créatif. Je travaille sur du contenu vidéo captivant, des créatifs publicitaires, l'automatisation YouTube et la narration visuelle cinématographique.",
+      "Je suis Ubaid, monteur vidéo professionnel et spécialiste du contenu créatif. Je travaille sur du contenu vidéo captivant, des créatifs publicitaires et la narration visuelle cinématographique.",
       "Je crois que chaque vidéo doit transmettre un message, capter l'attention et créer un réel impact.",
     ],
     philosophyTitle: "Philosophie créative",
@@ -779,7 +737,7 @@ export const fr: Dict = {
     kicker: "SERVICES",
     heading: "CE QUE JE CRÉE",
     subtitle:
-      "Cinq services ciblés, un objectif : du contenu vidéo qui capte l'attention et produit des résultats.",
+      "Trois services ciblés, un objectif : du contenu vidéo qui capte l'attention et produit des résultats.",
     viewProjects: "Voir les projets",
     items: [
       {
@@ -788,13 +746,7 @@ export const fr: Dict = {
           "Facebook Ads, Instagram Ads, publicités UGC, spots produits, créatifs promotionnels et montage vidéo orienté conversion.",
         tags: ["Facebook Ads", "Instagram Ads", "UGC", "Conversion"],
       },
-      {
-        title: "AUTOMATISATION YOUTUBE",
-        description:
-          "Vidéos YouTube sans visage, montage documentaire, storytelling, montage long format, séquences d'archives, synchronisation voix-off et vidéos éducatives.",
-        tags: ["Sans visage", "Documentaire", "Long format", "Voix-off"],
-      },
-      {
+            {
         title: "GESTION DE CHAÎNE YOUTUBE",
         description:
           "Gestion complète de votre chaîne YouTube — planification de contenu, calendrier de publication, titres, miniatures, balises SEO et croissance d'audience.",
@@ -806,13 +758,7 @@ export const fr: Dict = {
           "Reels Instagram, vidéos TikTok, YouTube Shorts, reels de marque et contenu promotionnel.",
         tags: ["Reels", "TikTok", "Shorts", "Contenu de marque"],
       },
-      {
-        title: "FORMATION AUTOMATISATION YOUTUBE",
-        description:
-          "Apprenez l'automatisation YouTube de A à Z — recherche de niche, scripts, chaînes sans visage, systèmes de montage et monétisation, sur de vrais projets.",
-        tags: ["Automatisation", "Sans visage", "Monétisation", "Mentorat"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "PORTFOLIO",
@@ -873,10 +819,8 @@ export const fr: Dict = {
     },
     services: [
       "Meta Ads & Créatifs UGC",
-      "Automatisation YouTube",
       "Gestion de chaîne YouTube",
       "Contenu vidéo réseaux sociaux",
-      "Formation automatisation YouTube",
     ],
     budgets: ["Moins de 300 $", "300 – 800 $", "800 – 2 000 $", "2 000 $+", "À discuter"],
     directTitle: "Canaux directs",
@@ -971,7 +915,7 @@ export const de: Dict = {
     kicker: "ÜBER MICH",
     heading: "HINTER DEN BILDERN",
     paragraphs: [
-      "Ich bin Ubaid, professioneller Videoeditor und Spezialist für kreative Inhalte. Ich arbeite an fesselnden Videoinhalten, Werbekreativen, YouTube-Automatisierung und filmischem visuellem Storytelling.",
+      "Ich bin Ubaid, professioneller Videoeditor und Spezialist für kreative Inhalte. Ich arbeite an fesselnden Videoinhalten, Werbekreativen und filmischem visuellem Storytelling.",
       "Ich glaube, dass jedes Video eine Botschaft vermitteln, Aufmerksamkeit erfassen und Wirkung erzielen muss.",
     ],
     philosophyTitle: "Kreative Philosophie",
@@ -994,7 +938,7 @@ export const de: Dict = {
     kicker: "LEISTUNGEN",
     heading: "WAS ICH GESTALTE",
     subtitle:
-      "Fünf fokussierte Leistungen, ein Ziel: Videoinhalte, die Aufmerksamkeit erfassen und Ergebnisse liefern.",
+      "Drei fokussierte Leistungen, ein Ziel: Videoinhalte, die Aufmerksamkeit erfassen und Ergebnisse liefern.",
     viewProjects: "Projekte ansehen",
     items: [
       {
@@ -1003,13 +947,7 @@ export const de: Dict = {
           "Facebook Ads, Instagram Ads, UGC-Werbung, Produktsspots, Promo-Kreatives und conversion-orientierte Videobearbeitung.",
         tags: ["Facebook Ads", "Instagram Ads", "UGC", "Conversion"],
       },
-      {
-        title: "YOUTUBE AUTOMATION",
-        description:
-          "Gesichtslose YouTube-Videos, Dokumentar-Schnitt, Storytelling, Langformat-Bearbeitung, Stock-Footage, Voice-Over-Synchronisation und Lernvideos.",
-        tags: ["Gesichtslos", "Dokumentation", "Langformat", "Voice-Over"],
-      },
-      {
+            {
         title: "YOUTUBE-KANAL-MANAGEMENT",
         description:
           "Komplette Verwaltung Ihres YouTube-Kanals — Contentplanung, Upload-Plan, Titel, Thumbnails, SEO-Tags und Zielgruppenwachstum.",
@@ -1021,13 +959,7 @@ export const de: Dict = {
           "Instagram Reels, TikTok-Videos, YouTube Shorts, Marken-Reels und Promo-Inhalte.",
         tags: ["Reels", "TikTok", "Shorts", "Markeninhalte"],
       },
-      {
-        title: "YOUTUBE-AUTOMATISIERUNG-TRAINING",
-        description:
-          "YouTube-Automatisierung von A bis Z lernen — Nischenrecherche, Skripte, gesichtslose Kanäle, Editing-Systeme und Monetarisierung, an echten Projekten.",
-        tags: ["Automatisierung", "Gesichtslos", "Monetarisierung", "Mentoring"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "PORTFOLIO",
@@ -1088,10 +1020,8 @@ export const de: Dict = {
     },
     services: [
       "Meta Ads & UGC Creatives",
-      "YouTube Automation",
       "YouTube-Kanal-Management",
       "Social Media Video Content",
-      "YouTube-Automatisierung-Training",
     ],
     budgets: ["Unter 300 $", "300 – 800 $", "800 – 2.000 $", "2.000 $+", "Lassen Sie uns sprechen"],
     directTitle: "Direkte Kanäle",
@@ -1186,7 +1116,7 @@ export const es: Dict = {
     kicker: "SOBRE MÍ",
     heading: "DETRÁS DE LAS IMÁGENES",
     paragraphs: [
-      "Soy Ubaid, editor de video profesional y especialista en contenido creativo. Trabajo en contenido de video atractivo, creatividades publicitarias, automatización de YouTube y narrativa visual cinematográfica.",
+      "Soy Ubaid, editor de video profesional y especialista en contenido creativo. Trabajo en contenido de video atractivo, creatividades publicitarias y narrativa visual cinematográfica.",
       "Creo que cada video debe comunicar un mensaje, captar la atención y crear un impacto.",
     ],
     philosophyTitle: "Filosofía creativa",
@@ -1209,7 +1139,7 @@ export const es: Dict = {
     kicker: "SERVICIOS",
     heading: "LO QUE CREO",
     subtitle:
-      "Cinco servicios enfocados, una meta: contenido de video que capta la atención y genera resultados.",
+      "Tres servicios enfocados, una meta: contenido de video que capta la atención y genera resultados.",
     viewProjects: "Ver proyectos",
     items: [
       {
@@ -1218,13 +1148,7 @@ export const es: Dict = {
           "Facebook Ads, Instagram Ads, anuncios UGC, comerciales de producto, creatividades promocionales y edición orientada a la conversión.",
         tags: ["Facebook Ads", "Instagram Ads", "UGC", "Conversión"],
       },
-      {
-        title: "AUTOMATIZACIÓN DE YOUTUBE",
-        description:
-          "Videos de YouTube sin rostro, edición documental, narrativa, edición de formato largo, material de archivo, sincronización de voz en off y videos educativos.",
-        tags: ["Sin rostro", "Documental", "Formato largo", "Voz en off"],
-      },
-      {
+            {
         title: "GESTIÓN DE CANAL DE YOUTUBE",
         description:
           "Gestión completa de tu canal de YouTube — planificación de contenido, calendario de publicaciones, títulos, miniaturas, etiquetas SEO y crecimiento de audiencia.",
@@ -1236,13 +1160,7 @@ export const es: Dict = {
           "Reels de Instagram, videos de TikTok, YouTube Shorts, reels de marca y contenido promocional.",
         tags: ["Reels", "TikTok", "Shorts", "Contenido de marca"],
       },
-      {
-        title: "FORMACIÓN EN AUTOMATIZACIÓN DE YOUTUBE",
-        description:
-          "Aprende automatización de YouTube de principio a fin — investigación de nicho, guiones, canales sin rostro, sistemas de edición y monetización, con proyectos reales.",
-        tags: ["Automatización", "Sin rostro", "Monetización", "Mentoría"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "PORTAFOLIO",
@@ -1303,10 +1221,8 @@ export const es: Dict = {
     },
     services: [
       "Meta Ads & Creativos UGC",
-      "Automatización de YouTube",
       "Gestión de canal de YouTube",
       "Contenido de video para redes",
-      "Formación en automatización de YouTube",
     ],
     budgets: ["Menos de $300", "$300 – $800", "$800 – $2,000", "$2,000+", "Hablemos"],
     directTitle: "Canales directos",
@@ -1401,7 +1317,7 @@ export const tr: Dict = {
     kicker: "HAKKIMDA",
     heading: "GÖRSELLERİN ARKASINDA",
     paragraphs: [
-      "Ben Ubaid; profesyonel bir video kurgucu ve yaratıcı içerik uzmanıyım. Etkileyici video içerikleri, reklam kreatifleri, YouTube otomasyonu ve sinematik görsel hikâye anlatımı üzerine çalışıyorum.",
+      "Ben Ubaid; profesyonel bir video kurgucu ve yaratıcı içerik uzmanıyım. Etkileyici video içerikleri, reklam kreatifleri ve sinematik görsel hikâye anlatımı üzerine çalışıyorum.",
       "Her videonun bir mesaj iletmeyi, dikkat çekmeyi ve etki yaratmayı hak ettiğine inanıyorum.",
     ],
     philosophyTitle: "Yaratıcı felsefe",
@@ -1424,7 +1340,7 @@ export const tr: Dict = {
     kicker: "HİZMETLER",
     heading: "NELER YARATIYORUM",
     subtitle:
-      "Beş odaklı hizmet, tek amaç: dikkat çeken ve sonuç üreten video içerik.",
+      "Üç odaklı hizmet, tek amaç: dikkat çeken ve sonuç üreten video içerik.",
     viewProjects: "Projeleri gör",
     items: [
       {
@@ -1433,13 +1349,7 @@ export const tr: Dict = {
           "Facebook Ads, Instagram Ads, UGC reklamları, ürün filmleri, tanıtım kreatifleri ve dönüşüm odaklı video kurgu.",
         tags: ["Facebook Ads", "Instagram Ads", "UGC", "Dönüşüm"],
       },
-      {
-        title: "YOUTUBE OTOMASYONU",
-        description:
-          "Yüzsüz YouTube videoları, belgesel kurgu, hikâye anlatımı, uzun format kurgu, arşiv görüntüleri, seslendirme senkronu ve eğitici videolar.",
-        tags: ["Yüzsüz", "Belgesel", "Uzun format", "Seslendirme"],
-      },
-      {
+            {
         title: "YOUTUBE KANAL YÖNETİMİ",
         description:
           "YouTube kanalınızın tam yönetimi — içerik planlaması, yükleme takvimi, başlıklar, kapak görselleri, SEO etiketleri ve kitle büyümesi.",
@@ -1451,13 +1361,7 @@ export const tr: Dict = {
           "Instagram Reels, TikTok videoları, YouTube Shorts, marka reelsleri ve tanıtım içerikleri.",
         tags: ["Reels", "TikTok", "Shorts", "Marka içeriği"],
       },
-      {
-        title: "YOUTUBE OTOMASYONU EĞİTİMİ",
-        description:
-          "YouTube otomasyonunu baştan sona öğrenin — niş araştırması, senaryo yazarlığı, yüzsüz kanallar, kurgu sistemleri ve para kazanma, gerçek projelerle.",
-        tags: ["Otomasyon", "Yüzsüz", "Para kazanma", "Mentorluk"],
-      },
-    ],
+          ],
   },
   portfolio: {
     kicker: "PORTFOLYO",
@@ -1518,10 +1422,8 @@ export const tr: Dict = {
     },
     services: [
       "Meta Reklamlar & UGC Kreatifleri",
-      "YouTube Otomasyonu",
       "YouTube Kanal Yönetimi",
       "Sosyal Medya Video İçeriği",
-      "YouTube Otomasyonu Eğitimi",
     ],
     budgets: ["$300 altı", "$300 – $800", "$800 – $2.000", "$2.000+", "Konuşalım"],
     directTitle: "Doğrudan kanallar",

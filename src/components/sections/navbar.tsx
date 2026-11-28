@@ -55,9 +55,9 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-[72px] sm:px-6" aria-label="Main">
         {/* Logo */}
         <a href="#home" onClick={(e) => { e.preventDefault(); jump("home"); }} className="group flex items-center gap-2.5">
-          <span className="relative block h-10 w-10 overflow-hidden rounded-xl border border-line shadow-[0_4px_14px_-4px_rgba(225,29,46,0.4)] transition group-hover:shadow-[0_6px_20px_-4px_rgba(225,29,46,0.6)]">
+          <span className="relative block h-10 w-10 overflow-hidden rounded-xl border border-line bg-[#0b0d12] shadow-[0_4px_14px_-4px_rgba(225,29,46,0.4)] transition group-hover:shadow-[0_6px_20px_-4px_rgba(225,29,46,0.6)]">
             <Image
-              src="/brand/ubaid-avatar-sm.jpg"
+              src="/brand/ubaid-logo-sm.jpg"
               alt="UBAID EDITS logo"
               fill
               sizes="40px"
