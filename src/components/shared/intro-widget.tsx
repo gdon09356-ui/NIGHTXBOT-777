@@ -65,7 +65,7 @@ function AvatarBubble({ onOpen, label }: { onOpen: () => void; label: string }) 
       <span className="absolute inset-0 rounded-full border-2 border-electric/50 animate-ring-pulse" aria-hidden="true" />
       <span className="absolute -inset-1.5 rounded-full bg-electric/10 blur-md animate-pulse-glow" aria-hidden="true" />
       <span className="relative block h-full w-full overflow-hidden rounded-full border-2 border-white shadow-[0_8px_30px_-6px_rgba(225,29,46,0.65)] transition group-hover:scale-105">
-        <Image src="/media/images/ubaid-real-enhanced.jpg" alt="Ubaid" fill sizes="64px" className="object-cover" />
+        <Image src="/media/images/ubaid-studio.jpg" alt="Ubaid" fill sizes="64px" className="object-cover" />
       </span>
       <span className="absolute -bottom-1 -end-1 flex h-6 w-6 items-center justify-center rounded-full bg-electric text-white shadow-md">
         <Play className="h-3 w-3 fill-current" />
@@ -108,7 +108,7 @@ function IntroCard({ onClose }: { onClose: () => void }) {
       {/* avatar overlapping the banner */}
       <div className="relative -mt-10 px-5">
         <span className="block h-20 w-20 overflow-hidden rounded-2xl border-4 border-white shadow-[0_10px_30px_-10px_rgba(225,29,46,0.55)] dark:border-[#1c2028]">
-          <Image src="/media/images/ubaid-real-enhanced.jpg" alt="Ubaid" width={160} height={160} className="h-full w-full object-cover" />
+          <Image src="/media/images/ubaid-studio.jpg" alt="Ubaid" width={160} height={160} className="h-full w-full object-cover" />
         </span>
         <p className="font-display mt-3 text-lg font-bold leading-none text-foreground">{t.intro.title}</p>
         <p className="mt-1.5 text-[12px] font-semibold text-electric">{t.intro.subtitle}</p>

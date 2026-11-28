@@ -36,9 +36,6 @@ import {
 export const CATEGORIES = [
   { id: "meta-ads", label: "Meta Ads" },
   { id: "ugc-ads", label: "UGC Ads" },
-  { id: "restaurant", label: "Restaurant Videos" },
-  { id: "motion-graphics", label: "Motion Graphics" },
-  { id: "social-reels", label: "Social Media Reels" },
 ];
 
 export const categoryLabel = (id: string) => CATEGORIES.find((c) => c.id === id)?.label ?? id;
@@ -46,9 +43,6 @@ export const categoryLabel = (id: string) => CATEGORIES.find((c) => c.id === id)
 const CATEGORY_HINTS: Record<string, string> = {
   "meta-ads": "Meta Ads",
   "ugc-ads": "UGC Ads",
-  restaurant: "Restaurant",
-  "motion-graphics": "Motion Graphics",
-  "social-reels": "Social Reels",
 };
 
 /** Publish-ready description written for the admin — editable if wanted. */

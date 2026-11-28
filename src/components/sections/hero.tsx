@@ -20,6 +20,7 @@ import Image from "next/image";
 import { useLanguage } from "@/i18n/language-context";
 import { useProfile } from "@/hooks/use-profile";
 import { useIntroVoice } from "@/hooks/use-intro-voice";
+import { ParticleBackground } from "@/components/shared/particle-background";
 
 /** Word-by-word reveal — word level keeps Arabic/Urdu shaping intact. */
 function RevealWords({
@@ -183,13 +184,15 @@ export function Hero() {
           disablePictureInPicture
           aria-hidden="true"
           src="/media/video/hero-bg.mp4"
-          poster="/media/images/ubaid-real-enhanced.jpg"
+          poster="/media/images/ubaid-studio.jpg"
           onPlay={() => setBgPlaying(true)}
           onPause={() => setBgPlaying(false)}
           className="absolute inset-0 h-full w-full object-cover opacity-25 transition-opacity duration-700 dark:opacity-60"
         />
       ) : null}
       <div className="grid-lines absolute inset-0" aria-hidden="true" />
+      {/* particle network overlay — sits above the video, below the copy */}
+      <ParticleBackground className="absolute inset-0 z-[3] opacity-80" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_40%,rgba(225,29,46,0.14),transparent)]" aria-hidden="true" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_35%_at_15%_80%,rgba(225,29,46,0.08),transparent)]" aria-hidden="true" />
       {/* drifting ambient blob */}
@@ -302,13 +305,13 @@ export function Hero() {
             <motion.div style={reduce ? undefined : { x: imgX, y: imgY }} className="will-change-transform">
               {/* enhanced-quality master (8K-derived, web-sized for fast LCP) */}
               <Image
-                src="/media/images/ubaid-real-enhanced.jpg"
+                src="/media/images/ubaid-studio.jpg"
                 alt={t.hero.portraitCaption}
-                width={3240}
-                height={4712}
+                width={1086}
+                height={1448}
                 priority
                 sizes="(max-width: 1024px) 90vw, 480px"
-                className="aspect-[3240/4712] w-full scale-[1.06] object-cover"
+                className="aspect-[1086/1448] w-full scale-[1.06] object-cover"
               />
             </motion.div>
             {/* bottom caption glass */}

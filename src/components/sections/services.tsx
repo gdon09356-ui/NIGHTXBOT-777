@@ -10,9 +10,9 @@ import type { CategoryId } from "@/content/projects";
 /* Service → portfolio category mapping (used by "View projects") */
 const SERVICE_CATEGORY: CategoryId[] = [
   "meta-ads",
-  "social-reels",
-  "social-reels",
-  "social-reels",
+  "ugc-ads",
+  "meta-ads",
+  "ugc-ads",
   "meta-ads", // training → meta-ads samples (editing technique demos)
 ];
 

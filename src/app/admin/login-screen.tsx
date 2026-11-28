@@ -41,7 +41,7 @@ export function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
       <div className="w-full max-w-sm rounded-3xl border border-line bg-card/70 p-7 shadow-[0_40px_120px_-30px_rgba(225,29,46,0.25)] backdrop-blur">
         <div className="flex flex-col items-center text-center">
           <Image
-            src="/brand/ubaid-edits-logo-sm.jpg"
+            src="/brand/ubaid-avatar-sm.jpg"
             alt="UBAID EDITS logo"
             width={72}
             height={72}

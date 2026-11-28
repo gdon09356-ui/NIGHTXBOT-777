@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import { LanguageProvider } from "@/i18n/language-context";
+import { ParticleBackground } from "@/components/shared/particle-background";
 import { BRAND } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -36,9 +37,9 @@ export const metadata: Metadata = {
     siteName: BRAND.name,
     images: [
       {
-        url: "/brand/ubaid-edits-logo.jpg",
-        width: 1200,
-        height: 1200,
+        url: "/media/images/ubaid-studio.jpg",
+        width: 1086,
+        height: 1448,
         alt: "UBAID EDITS — Edit • Create • Inspire",
       },
     ],
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description:
       "Professional video editing, motion graphics and creative advertising. EN / AR / UR.",
-    images: ["/brand/ubaid-edits-logo.jpg"],
+    images: ["/media/images/ubaid-studio.jpg"],
   },
   robots: {
     index: true,
@@ -90,7 +91,11 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey="ubaid-theme"
         >
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            {/* cinematic particle network — fixed behind every page */}
+            <ParticleBackground className="fixed inset-0 z-0 opacity-70" />
+            {children}
+          </LanguageProvider>
           <Toaster />
         </ThemeProvider>
       </body>

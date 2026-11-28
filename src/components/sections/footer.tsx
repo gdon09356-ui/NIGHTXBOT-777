@@ -46,7 +46,7 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <span className="relative block h-12 w-12 overflow-hidden rounded-xl border border-line shadow-[0_4px_14px_-4px_rgba(225,29,46,0.4)]">
                 <Image
-                  src="/brand/ubaid-edits-logo-sm.jpg"
+                  src="/brand/ubaid-avatar-sm.jpg"
                   alt="UBAID EDITS logo"
                   fill
                   sizes="48px"

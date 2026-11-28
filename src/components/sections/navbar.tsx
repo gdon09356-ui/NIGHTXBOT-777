@@ -57,7 +57,7 @@ export function Navbar() {
         <a href="#home" onClick={(e) => { e.preventDefault(); jump("home"); }} className="group flex items-center gap-2.5">
           <span className="relative block h-10 w-10 overflow-hidden rounded-xl border border-line shadow-[0_4px_14px_-4px_rgba(225,29,46,0.4)] transition group-hover:shadow-[0_6px_20px_-4px_rgba(225,29,46,0.6)]">
             <Image
-              src="/brand/ubaid-edits-logo-sm.jpg"
+              src="/brand/ubaid-avatar-sm.jpg"
               alt="UBAID EDITS logo"
               fill
               sizes="40px"

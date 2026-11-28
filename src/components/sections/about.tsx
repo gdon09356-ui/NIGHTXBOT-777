@@ -28,10 +28,10 @@ export function About() {
           <Reveal className="relative mx-auto w-full max-w-md lg:sticky lg:top-28">
             <div className="group relative overflow-hidden rounded-3xl border border-line">
               <Image
-                src="/media/images/ubaid-real-enhanced.jpg"
+                src="/media/images/ubaid-studio.jpg"
                 alt={t.about.portraitCaption}
-                width={3240}
-                height={4712}
+                width={1086}
+                height={1448}
                 sizes="(max-width: 1024px) 90vw, 420px"
                 className="w-full object-cover transition duration-700 group-hover:scale-[1.03]"
               />

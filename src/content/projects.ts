@@ -38,9 +38,6 @@ export const PORTFOLIO_CATEGORIES: (CategoryId | "all")[] = [
   "all",
   "meta-ads",
   "ugc-ads",
-  "restaurant",
-  "motion-graphics",
-  "social-reels",
 ];
 
 /* Neutral branded thumbnail used when an admin video has none. */

@@ -164,7 +164,7 @@ export const en = {
     kicker: "PORTFOLIO",
     heading: "CINEMATIC VIDEO WORK",
     subtitle:
-      "A selection of commercial, restaurant and social content — filter by category and play a preview.",
+      "A selection of Meta ads and UGC creatives — filter by category and play a preview.",
     openPlayer: "Open player",
     close: "Close",
     allLabel: "ALL PROJECTS",
@@ -390,7 +390,7 @@ export const ar: Dict = {
   portfolio: {
     kicker: "معرض الأعمال",
     heading: "أعمال فيديو سينمائية",
-    subtitle: "مجموعة من المحتوى الإعلاني والمطاعم والاجتماعي — صفّ حسب الفئة وشاهد المعاينة.",
+    subtitle: "مجموعة من إعلانات ميتا ومحتوى UGC — صفّ حسب الفئة وشاهد المعاينة.",
     openPlayer: "افتح المشغّل",
     close: "إغلاق",
     allLabel: "كل المشاريع",
@@ -605,7 +605,7 @@ export const ur: Dict = {
   portfolio: {
     kicker: "پورٹ فولیو",
     heading: "سنیمیٹک ویڈیو ورک",
-    subtitle: "کمرشل، ریسٹورنٹ اور سوشل مواد کا منتخب مجموعہ — کیٹیگری فلٹر کریں اور پریویو چلائیں۔",
+    subtitle: "میٹا ایڈز اور UGC کری ایٹیوز کا منتخب مجموعہ — کیٹیگری فلٹر کریں اور پریویو چلائیں۔",
     openPlayer: "پلیئر کھولیں",
     close: "بند کریں",
     allLabel: "تمام پروجیکٹس",
@@ -818,7 +818,7 @@ export const fr: Dict = {
     kicker: "PORTFOLIO",
     heading: "TRAVAUX VIDÉO CINÉMATIQUES",
     subtitle:
-      "Une sélection de contenus commerciaux, restaurants et sociaux — filtrez par catégorie et lancez un aperçu.",
+      "Une sélection de publicités Meta et de contenus UGC — filtrez par catégorie et lancez un aperçu.",
     openPlayer: "Ouvrir le lecteur",
     close: "Fermer",
     allLabel: "TOUS LES PROJETS",
@@ -1033,7 +1033,7 @@ export const de: Dict = {
     kicker: "PORTFOLIO",
     heading: "FILMISCHES VIDEO-WERK",
     subtitle:
-      "Eine Auswahl kommerzieller, Restaurant- und Social-Inhalte — nach Kategorie filtern und Vorschau abspielen.",
+      "Eine Auswahl von Meta-Werbung und UGC-Creatives — nach Kategorie filtern und Vorschau abspielen.",
     openPlayer: "Player öffnen",
     close: "Schließen",
     allLabel: "ALLE PROJEKTE",
@@ -1248,7 +1248,7 @@ export const es: Dict = {
     kicker: "PORTAFOLIO",
     heading: "TRABAJO DE VIDEO CINEMATOGRÁFICO",
     subtitle:
-      "Una selección de contenido comercial, de restaurantes y social — filtra por categoría y reproduce una vista previa.",
+      "Una selección de anuncios de Meta y contenido UGC — filtra por categoría y reproduce una vista previa.",
     openPlayer: "Abrir reproductor",
     close: "Cerrar",
     allLabel: "TODOS LOS PROYECTOS",
@@ -1463,7 +1463,7 @@ export const tr: Dict = {
     kicker: "PORTFOLYO",
     heading: "SİNEMATİK VİDEO ÇALIŞMALARI",
     subtitle:
-      "Ticari, restoran ve sosyal içerikten bir seçki — kategoriye göre filtreleyin ve önizlemeyi oynatın.",
+      "Meta reklamları ve UGC içeriklerinden bir seçki — kategoriye göre filtreleyin ve önizlemeyi oynatın.",
     openPlayer: "Oynatıcıyı aç",
     close: "Kapat",
     allLabel: "TÜM PROJELER",
